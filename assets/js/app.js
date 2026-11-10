@@ -94,6 +94,7 @@ Object.entries(config.theme).forEach(([name, value]) => {
     const videoSource = select("#introVideoSource");
 
     audio.src = config.media.music;
+    audio.load();
     video.poster = config.media.introPoster;
     videoSource.src = config.media.introVideo;
     video.load();
@@ -325,30 +326,56 @@ audio.play()
   }
 
   function initializeMusic() {
-  const audio = select("#backgroundMusic");
-  const button = select("#musicToggle");
+    const audio = select("#backgroundMusic");
+    const button = select("#musicToggle");
 
-  button.addEventListener("click", async (event) => {
-    event.stopPropagation();
+    button.addEventListener("click", async (event) => {
+      event.stopPropagation();
 
-    if (audio.paused) {
-      try {
-        await audio.play();
-      } catch {
-        // Playback can fail if the music file is missing.
+      if (audio.paused) {
+        try {
+          await audio.play();
+        } catch {
+          // Playback can fail if the music file is missing.
+        }
+      } else {
+        audio.pause();
       }
-    } else {
-      audio.pause();
-    }
+
+      updateMusicControl();
+    });
+
+    audio.addEventListener("play", updateMusicControl);
+    audio.addEventListener("pause", updateMusicControl);
+
+    // Try starting audio immediately by default
+    const playAudio = () => {
+      if (audio && audio.paused) {
+        audio.play().then(updateMusicControl).catch(() => {});
+      }
+    };
+
+    // Attempt immediately
+    playAudio();
+
+    // If browser blocked unmuted autoplay before gesture, start on very first interaction
+    const startOnInteraction = () => {
+      playAudio();
+      window.removeEventListener("pointerdown", startOnInteraction, true);
+      window.removeEventListener("touchstart", startOnInteraction, true);
+      window.removeEventListener("click", startOnInteraction, true);
+      window.removeEventListener("scroll", startOnInteraction, true);
+      window.removeEventListener("keydown", startOnInteraction, true);
+    };
+
+    window.addEventListener("pointerdown", startOnInteraction, { capture: true, once: true });
+    window.addEventListener("touchstart", startOnInteraction, { capture: true, once: true });
+    window.addEventListener("click", startOnInteraction, { capture: true, once: true });
+    window.addEventListener("scroll", startOnInteraction, { capture: true, once: true });
+    window.addEventListener("keydown", startOnInteraction, { capture: true, once: true });
 
     updateMusicControl();
-  });
-
-  audio.addEventListener("play", updateMusicControl);
-  audio.addEventListener("pause", updateMusicControl);
-
-  updateMusicControl();
-}
+  }
 
   function initializeRevealAnimations() {
     const revealElements = selectAll(".reveal");
