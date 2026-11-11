@@ -63,16 +63,29 @@ document.addEventListener("dragstart", (event) => {
     const description = select('meta[name="description"]');
     const ogTitle = select('meta[property="og:title"]');
     const ogDescription = select('meta[property="og:description"]');
+    const metaTheme = select('meta[name="theme-color"]');
 
     description?.setAttribute("content", config.site.description);
     ogTitle?.setAttribute("content", config.site.title);
     ogDescription?.setAttribute("content", config.site.description);
+    metaTheme?.setAttribute("content", config.theme.plum);
 
     const root = document.documentElement;
 
-Object.entries(config.theme).forEach(([name, value]) => {
-  root.style.setProperty(`--${name}`, value);
-});
+    Object.entries(config.theme).forEach(([name, value]) => {
+      root.style.setProperty(`--${name}`, value);
+    });
+
+    if (config.media.floralDivider) {
+      selectAll(".floral-divider img").forEach((img) => {
+        img.src = config.media.floralDivider;
+      });
+    }
+
+    if (config.media.scratchFrame) {
+      const sf = select(".scratch-frame-overlay");
+      if (sf) sf.src = config.media.scratchFrame;
+    }
 
     selectAll("[data-bind]").forEach((element) => {
       const value = getValue(element.dataset.bind);
@@ -168,6 +181,8 @@ function renderPreWeddingEvents() {
 
   function renderDressPalette() {
     const palette = select("#dressPalette");
+    if (!palette) return;
+    palette.innerHTML = "";
 
     config.dressCode.swatches.forEach((color, index) => {
       const swatch = createElement("i");
@@ -993,6 +1008,118 @@ function createPetalShower() {
     });
   }
 
+  function initializeTemplateSwitcher() {
+    const allConfigs = window.INVITATION_CONFIGS;
+    if (!allConfigs) return;
+
+    const activeId = window.ACTIVE_TEMPLATE_ID || "burgundy";
+    const isInsideTemplates = window.location.pathname.includes("/templates/");
+
+    // 1. Create floating dock
+    const dock = createElement("div", "template-switcher-dock");
+
+    const showcaseLink = createElement("a", "template-showcase-btn");
+    showcaseLink.href = isInsideTemplates ? "../../templates.html" : "./templates.html";
+    showcaseLink.innerHTML = `<span>🏛️</span><span>Templates Hub</span>`;
+
+    const triggerBtn = createElement("button", "template-switcher-trigger");
+    triggerBtn.type = "button";
+    triggerBtn.setAttribute("aria-label", "Switch Wedding Card Theme");
+    triggerBtn.innerHTML = `<span class="dot-pulse"></span><span>Themes (${Object.keys(allConfigs).length})</span>`;
+
+    dock.append(showcaseLink, triggerBtn);
+
+    // 2. Create Modal Drawer
+    const backdrop = createElement("div", "template-modal-backdrop");
+    const modal = createElement("div", "template-modal");
+
+    modal.innerHTML = `
+      <div class="template-modal-header">
+        <div>
+          <h2 class="template-modal-title">Nikah Card Collection</h2>
+          <p class="template-modal-sub">Explore all 4 bespoke luxury wedding themes</p>
+        </div>
+        <button class="template-modal-close" type="button" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="template-grid" id="templateModalGrid"></div>
+      <div class="template-modal-footer">
+        <a href="${isInsideTemplates ? "../../templates.html" : "./templates.html"}">
+          <span>🌟</span><span>Open Full Templates Catalog & Showcase</span>
+        </a>
+        <small style="color: rgba(255,255,255,0.45); font-size: 0.76rem;">Instant Live Switcher</small>
+      </div>
+    `;
+
+    document.body.append(backdrop, modal, dock);
+
+    const grid = modal.querySelector("#templateModalGrid");
+
+    Object.values(allConfigs).forEach((item) => {
+      const card = createElement(
+        "div",
+        `template-card-item${item.id === activeId ? " is-current" : ""}`,
+      );
+      card.style.setProperty("--card-accent", item.accentColor);
+
+      const isCurrent = item.id === activeId;
+      const coupleNames = `${item.couple.bride.name} & ${item.couple.groom.name}`;
+
+      const swatchesHtml = item.dressCode.swatches
+        .map((c) => `<span style="background:${c}"></span>`)
+        .join("");
+
+      const previewHref = isInsideTemplates
+        ? `../../index.html?theme=${item.id}`
+        : `?theme=${item.id}`;
+
+      const standaloneHref = isInsideTemplates
+        ? `../${item.id}/index.html`
+        : `./templates/${item.id}/index.html`;
+
+      card.innerHTML = `
+        <div class="template-card-banner" style="background:${item.bgPreview}">
+          <strong style="font-size: 0.95rem; font-weight: 600;">${item.name}</strong>
+          <span class="theme-badge">${item.tag}</span>
+        </div>
+        <div class="template-card-info">
+          <h3>${coupleNames}</h3>
+          <p>${item.tagline} · ${item.wedding.date}</p>
+        </div>
+        <div class="template-swatches" aria-label="Theme color palette">
+          ${swatchesHtml}
+        </div>
+        <div class="template-card-actions">
+          <a class="template-btn-preview" href="${previewHref}">
+            ${isCurrent ? "✓ Active Theme" : "Preview Theme"}
+          </a>
+          <a class="template-btn-link" href="${standaloneHref}" title="Standalone card link for clients">
+            Card Link ↗
+          </a>
+        </div>
+      `;
+
+      grid.append(card);
+    });
+
+    function openModal() {
+      backdrop.classList.add("is-active");
+      modal.classList.add("is-active");
+    }
+
+    function closeModal() {
+      backdrop.classList.remove("is-active");
+      modal.classList.remove("is-active");
+    }
+
+    triggerBtn.addEventListener("click", openModal);
+    backdrop.addEventListener("click", closeModal);
+    modal.querySelector(".template-modal-close").addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  }
+
   function initialize() {
     applyConfig();
     initializeOpening();
@@ -1000,6 +1127,7 @@ function createPetalShower() {
     initializeRevealAnimations();
     initializeScratchCard();
     initializeCountdown();
+    initializeTemplateSwitcher();
   }
 
   document.addEventListener("DOMContentLoaded", initialize);

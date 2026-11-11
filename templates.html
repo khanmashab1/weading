@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Digital Nikah &amp; Wedding Card Templates | Luxury Collection</title>
+    <meta
+      name="description"
+      content="Explore our bespoke collection of luxury digital Nikah and wedding invitation cards. Featuring interactive scratch-to-reveal dates, cinematic video openings, and custom themes."
+    />
+    <meta name="theme-color" content="#120c10" />
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600;700&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap"
+    />
+
+    <style>
+      :root {
+        --font-display: "Cormorant Infant", Georgia, serif;
+        --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-script: "Allura", cursive;
+        --gold: #c9a35f;
+        --gold-light: #e5c98d;
+        --bg-dark: #0d090c;
+        --bg-card: rgba(255, 255, 255, 0.035);
+        --border-gold: rgba(201, 163, 95, 0.35);
+        --text-light: #f5efe6;
+        --text-muted: rgba(245, 239, 230, 0.68);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: var(--font-body);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Background glow */
+      .ambient-glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at 15% 20%, rgba(111, 11, 23, 0.22), transparent 45%),
+          radial-gradient(circle at 85% 65%, rgba(15, 59, 42, 0.22), transparent 45%),
+          radial-gradient(circle at 50% 85%, rgba(20, 35, 75, 0.25), transparent 50%);
+        z-index: -1;
+      }
+
+      .shell {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navigation */
+      header.navbar {
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        position: sticky;
+        top: 0;
+        background: rgba(13, 9, 12, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        z-index: 100;
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--text-light);
+      }
+
+      .brand-emblem {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--border-gold);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        color: var(--gold);
+        font-size: 1.2rem;
+        background: rgba(201, 163, 95, 0.08);
+      }
+
+      .brand-text h1 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        line-height: 1.1;
+      }
+
+      .brand-text p {
+        font-size: 0.72rem;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 16px;
+      }
+
+      .btn-nav-primary {
+        background: linear-gradient(135deg, var(--gold), #aa803c);
+        color: #12090c;
+        padding: 8px 18px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn-nav-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(201, 163, 95, 0.35);
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 72px 0 44px;
+      }
+
+      .hero-eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+        padding: 4px 14px;
+        background: rgba(201, 163, 95, 0.1);
+        border: 1px solid rgba(201, 163, 95, 0.25);
+        border-radius: 999px;
+      }
+
+      .hero h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+        font-weight: 400;
+        line-height: 1.15;
+        margin-bottom: 16px;
+      }
+
+      .hero h2 span.script {
+        font-family: var(--font-script);
+        color: var(--gold);
+        font-size: 1.25em;
+        display: inline-block;
+        padding: 0 4px;
+      }
+
+      .hero p.lead {
+        font-size: 1.05rem;
+        color: var(--text-muted);
+        max-width: 660px;
+        margin: 0 auto 32px;
+      }
+
+      /* Filter pills */
+      .filter-bar {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 48px;
+      }
+
+      .filter-pill {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        padding: 8px 20px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .filter-pill:hover,
+      .filter-pill.is-active {
+        background: rgba(201, 163, 95, 0.15);
+        border-color: var(--gold);
+        color: var(--gold-light);
+      }
+
+      /* Cards Grid */
+      .template-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 32px;
+        margin-bottom: 80px;
+      }
+
+      .card-item {
+        background: var(--bg-card);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+      }
+
+      .card-item:hover {
+        transform: translateY(-6px);
+        border-color: var(--theme-accent, var(--gold));
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Preview media window */
+      .card-visual {
+        height: 280px;
+        position: relative;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .card-visual img.poster-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .card-item:hover .card-visual img.poster-img {
+        transform: scale(1.05);
+      }
+
+      .card-veil-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.15) 0%,
+          rgba(0, 0, 0, 0.75) 100%
+        );
+      }
+
+      .card-badge-top {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+
+      .card-live-indicator {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(8px);
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        color: var(--gold);
+        border: 1px solid var(--border-gold);
+      }
+
+      .card-live-indicator i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 8px #10b981;
+      }
+
+      .card-visual-info {
+        position: absolute;
+        bottom: 18px;
+        left: 20px;
+        right: 20px;
+      }
+
+      .card-visual-info .couple-title {
+        font-family: var(--font-display);
+        font-size: 1.85rem;
+        color: #fff;
+        line-height: 1.1;
+        margin-bottom: 4px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      }
+
+      .card-visual-info .theme-sub {
+        font-size: 0.84rem;
+        color: var(--theme-accent, var(--gold));
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+      }
+
+      /* Card Content */
+      .card-content {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 18px;
+      }
+
+      .card-description {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* Color Palette Bar */
+      .palette-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 10px 14px;
+        border-radius: 12px;
+      }
+
+      .palette-label {
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+      }
+
+      .palette-dots {
+        display: flex;
+        gap: 8px;
+      }
+
+      .palette-dots span {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Feature bullets */
+      .feature-list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 12px;
+        font-size: 0.78rem;
+        color: rgba(245, 239, 230, 0.8);
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .feature-list li span.bullet-icon {
+        color: var(--theme-accent, var(--gold));
+      }
+
+      /* Card Actions */
+      .card-actions {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .btn-open-card {
+        background: var(--theme-accent, var(--gold));
+        color: #0d090c;
+        text-align: center;
+        padding: 11px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .btn-open-card:hover {
+        filter: brightness(1.15);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      }
+
+      .btn-preview-phone {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: var(--text-light);
+        padding: 11px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .btn-preview-phone:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Phone Simulator Modal */
+      .modal-sim-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(3, 2, 4, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        padding: 20px;
+      }
+
+      .modal-sim-backdrop.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-sim-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        max-width: 480px;
+        width: 100%;
+      }
+
+      .modal-sim-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: #fff;
+      }
+
+      .modal-sim-title {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        color: var(--gold);
+      }
+
+      .modal-close-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .phone-frame {
+        width: 360px;
+        height: 720px;
+        max-height: 82vh;
+        background: #000;
+        border-radius: 44px;
+        border: 10px solid #282427;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .phone-notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 110px;
+        height: 20px;
+        background: #282427;
+        border-radius: 0 0 14px 14px;
+        z-index: 10;
+      }
+
+      .phone-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #000;
+      }
+
+      /* Customization Highlight Section */
+      .features-highlight {
+        padding: 60px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .features-highlight h3 {
+        text-align: center;
+        font-family: var(--font-display);
+        font-size: 2.2rem;
+        margin-bottom: 36px;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .benefit-box {
+        background: rgba(255, 255, 255, 0.025);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .benefit-box .icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .benefit-box h4 {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+
+      .benefit-box p {
+        font-size: 0.86rem;
+        color: var(--text-muted);
+      }
+
+      /* Footer */
+      footer {
+        padding: 48px 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      footer p.brand-foot {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .template-grid {
+          grid-template-columns: 1fr;
+        }
+        .phone-frame {
+          width: 320px;
+          height: 640px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="ambient-glow" aria-hidden="true"></div>
+
+    <header class="navbar">
+      <div class="shell nav-inner">
+        <a class="brand" href="./index.html">
+          <div class="brand-emblem">✦</div>
+          <div class="brand-text">
+            <h1>Nikah Cards</h1>
+            <p>Bespoke Invitation Studio</p>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a class="btn-nav-primary" href="./index.html">
+            View Live Card ↗
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <span class="hero-eyebrow">Luxury Digital Invitations</span>
+        <h2>
+          Handcrafted Templates for <br />
+          <span class="script">Your Sacred Nikah</span>
+        </h2>
+        <p class="lead">
+          Share your love story with bespoke digital wedding cards. Built with
+          interactive scratch-off date reveals, cinematic video backdrops,
+          audio blessings, live countdowns, and guest directions.
+        </p>
+
+        <div class="filter-bar">
+          <button class="filter-pill is-active" data-filter="all">All Templates (4)</button>
+          <button class="filter-pill" data-filter="emerald">Imperial Emerald</button>
+          <button class="filter-pill" data-filter="sapphire">Celestial Sapphire</button>
+          <button class="filter-pill" data-filter="rose">Blush Rose Luxe</button>
+          <button class="filter-pill" data-filter="burgundy">Royal Burgundy</button>
+        </div>
+      </section>
+
+      <!-- Templates Grid -->
+      <section class="template-grid" id="templatesGrid">
+        <!-- 1. Emerald -->
+        <article
+          class="card-item"
+          data-theme="emerald"
+          style="--theme-accent: #d4af37;"
+        >
+          <div class="card-visual">
+            <img
+              class="poster-img"
+              src="./media/intro-emerald.webp"
+              alt="Imperial Emerald Theme Poster"
+              loading="eager"
+            />
+            <div class="card-veil-overlay"></div>
+            <span class="card-badge-top">Paradise Garden (Zamrud)</span>
+            <div class="card-live-indicator">
+              <i></i> Live Card
+            </div>
+            <div class="card-visual-info">
+              <h3 class="couple-title">Zoya &amp; Hamza</h3>
+              <p class="theme-sub">Imperial Emerald &amp; Antique Gold</p>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <p class="card-description">
+              A regal Islamic paradise aesthetic inspired by sacred emerald
+              gardens, lush botanical filigree, and metallic antique gold
+              accents.
+            </p>
+
+            <div class="palette-box">
+              <span class="palette-label">Color Palette</span>
+              <div class="palette-dots">
+                <span style="background: #071c14;" title="Imperial Emerald"></span>
+                <span style="background: #1b4332;" title="Lush Forest"></span>
+                <span style="background: #d4af37;" title="Antique Gold"></span>
+                <span style="background: #40916c;" title="Mint Sage"></span>
+                <span style="background: #f5efe6;" title="Alabaster Cream"></span>
+              </div>
+            </div>
+
+            <ul class="feature-list">
+              <li><span class="bullet-icon">✦</span> Scratch-to-reveal Date</li>
+              <li><span class="bullet-icon">✦</span> Emerald Motion Video</li>
+              <li><span class="bullet-icon">✦</span> 4-Event Schedule</li>
+              <li><span class="bullet-icon">✦</span> Google Maps &amp; RSVP</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn-open-card" href="./templates/emerald/index.html">
+                🌟 Open Full Card
+              </a>
+              <button
+                class="btn-preview-phone"
+                type="button"
+                data-url="./templates/emerald/index.html"
+                data-name="Zoya &amp; Hamza (Emerald)"
+              >
+                📱 Mobile View
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Sapphire -->
+        <article
+          class="card-item"
+          data-theme="sapphire"
+          style="--theme-accent: #e5a93c;"
+        >
+          <div class="card-visual">
+            <img
+              class="poster-img"
+              src="./media/intro-sapphire.webp"
+              alt="Midnight Sapphire Theme Poster"
+              loading="eager"
+            />
+            <div class="card-veil-overlay"></div>
+            <span class="card-badge-top">Celestial Arabian Nights</span>
+            <div class="card-live-indicator">
+              <i></i> Live Card
+            </div>
+            <div class="card-visual-info">
+              <h3 class="couple-title">Sarah &amp; Rehan</h3>
+              <p class="theme-sub">Midnight Sapphire &amp; Stardust</p>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <p class="card-description">
+              An enchanting celestial evening theme. Deep midnight navy blue
+              intertwined with radiant starlight gold, lantern glow, and
+              archway silhouettes.
+            </p>
+
+            <div class="palette-box">
+              <span class="palette-label">Color Palette</span>
+              <div class="palette-dots">
+                <span style="background: #081026;" title="Midnight Navy"></span>
+                <span style="background: #14234b;" title="Royal Sapphire"></span>
+                <span style="background: #e5a93c;" title="Celestial Gold"></span>
+                <span style="background: #223a70;" title="Twilight Blue"></span>
+                <span style="background: #f4f6fb;" title="Starry Mist"></span>
+              </div>
+            </div>
+
+            <ul class="feature-list">
+              <li><span class="bullet-icon">✦</span> Scratch-to-reveal Date</li>
+              <li><span class="bullet-icon">✦</span> Stardust Motion Video</li>
+              <li><span class="bullet-icon">✦</span> Qawwali &amp; Nikah Events</li>
+              <li><span class="bullet-icon">✦</span> Dress Code Palette</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn-open-card" href="./templates/sapphire/index.html">
+                🌟 Open Full Card
+              </a>
+              <button
+                class="btn-preview-phone"
+                type="button"
+                data-url="./templates/sapphire/index.html"
+                data-name="Sarah &amp; Rehan (Sapphire)"
+              >
+                📱 Mobile View
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Rose -->
+        <article
+          class="card-item"
+          data-theme="rose"
+          style="--theme-accent: #d9a779;"
+        >
+          <div class="card-visual">
+            <img
+              class="poster-img"
+              src="./media/intro-rose.webp"
+              alt="Blush Rose Theme Poster"
+              loading="lazy"
+            />
+            <div class="card-veil-overlay"></div>
+            <span class="card-badge-top">Romantic Pastel Flora</span>
+            <div class="card-live-indicator">
+              <i></i> Live Card
+            </div>
+            <div class="card-visual-info">
+              <h3 class="couple-title">Zainab &amp; Bilal</h3>
+              <p class="theme-sub">Blush Rose &amp; Champagne Pearl</p>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <p class="card-description">
+              A contemporary romantic luxury theme. Delicate blush petals,
+              dusty rose accents, and warm champagne rose-gold for an elegant
+              day or evening ceremony.
+            </p>
+
+            <div class="palette-box">
+              <span class="palette-label">Color Palette</span>
+              <div class="palette-dots">
+                <span style="background: #2e101d;" title="Deep Plum Rose"></span>
+                <span style="background: #964b6a;" title="Dusty Rose"></span>
+                <span style="background: #d9a779;" title="Rose Champagne"></span>
+                <span style="background: #e6cad4;" title="Blush Mist"></span>
+                <span style="background: #fff8f3;" title="Pearl Alabaster"></span>
+              </div>
+            </div>
+
+            <ul class="feature-list">
+              <li><span class="bullet-icon">✦</span> Scratch-to-reveal Date</li>
+              <li><span class="bullet-icon">✦</span> Rose Shimmer Video</li>
+              <li><span class="bullet-icon">✦</span> Haldi, Mehndi, Nikah</li>
+              <li><span class="bullet-icon">✦</span> Background Audio</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn-open-card" href="./templates/rose/index.html">
+                🌟 Open Full Card
+              </a>
+              <button
+                class="btn-preview-phone"
+                type="button"
+                data-url="./templates/rose/index.html"
+                data-name="Zainab &amp; Bilal (Rose)"
+              >
+                📱 Mobile View
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Burgundy -->
+        <article
+          class="card-item"
+          data-theme="burgundy"
+          style="--theme-accent: #c9a35f;"
+        >
+          <div class="card-visual">
+            <img
+              class="poster-img"
+              src="./media/intro-placeholder.webp"
+              alt="Royal Burgundy Theme Poster"
+              loading="lazy"
+            />
+            <div class="card-veil-overlay"></div>
+            <span class="card-badge-top">Classic Mughal Velvet</span>
+            <div class="card-live-indicator">
+              <i></i> Live Card
+            </div>
+            <div class="card-visual-info">
+              <h3 class="couple-title">Faiza &amp; Aawaiz</h3>
+              <p class="theme-sub">Royal Velvet Burgundy &amp; Gold</p>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <p class="card-description">
+              The iconic signature design. Rich imperial wine velvet, candlelit
+              cream tones, and warm antique gold filigree celebrating timeless
+              tradition.
+            </p>
+
+            <div class="palette-box">
+              <span class="palette-label">Color Palette</span>
+              <div class="palette-dots">
+                <span style="background: #3a070c;" title="Royal Velvet"></span>
+                <span style="background: #6f0b17;" title="Wine Red"></span>
+                <span style="background: #c9a35f;" title="Antique Gold"></span>
+                <span style="background: #a51520;" title="Crimson Rose"></span>
+                <span style="background: #f1e3ce;" title="Candlelit Cream"></span>
+              </div>
+            </div>
+
+            <ul class="feature-list">
+              <li><span class="bullet-icon">✦</span> Scratch-to-reveal Date</li>
+              <li><span class="bullet-icon">✦</span> Mughal Motion Video</li>
+              <li><span class="bullet-icon">✦</span> Mehendi &amp; Walima</li>
+              <li><span class="bullet-icon">✦</span> Full RSVP System</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn-open-card" href="./templates/burgundy/index.html">
+                🌟 Open Full Card
+              </a>
+              <button
+                class="btn-preview-phone"
+                type="button"
+                data-url="./templates/burgundy/index.html"
+                data-name="Faiza &amp; Aawaiz (Burgundy)"
+              >
+                📱 Mobile View
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Highlights section -->
+      <section class="features-highlight">
+        <h3>Why Couples Love Digital Invitations</h3>
+        <div class="benefits-grid">
+          <div class="benefit-box">
+            <span class="icon">✨</span>
+            <h4>Interactive Experience</h4>
+            <p>
+              Guests uncover the date with an authentic tactile scratch-card
+              canvas, accompanied by romantic background music.
+            </p>
+          </div>
+
+          <div class="benefit-box">
+            <span class="icon">🎬</span>
+            <h4>Cinematic Video Veil</h4>
+            <p>
+              An envelope-style opening featuring custom portrait videos and
+              glowing particles welcoming your loved ones.
+            </p>
+          </div>
+
+          <div class="benefit-box">
+            <span class="icon">📍</span>
+            <h4>Live Venue Maps</h4>
+            <p>
+              One tap gives guests instant driving directions to Hyatt Regency,
+              The Leela Palace, or ITC Grand Chola directly on Google Maps.
+            </p>
+          </div>
+
+          <div class="benefit-box">
+            <span class="icon">📱</span>
+            <h4>Instant WhatsApp Sharing</h4>
+            <p>
+              Optimized for mobile viewing with fast loading, gorgeous OpenGraph
+              previews, and effortless one-link delivery.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Phone Simulator Modal -->
+    <div id="simModal" class="modal-sim-backdrop" role="dialog" aria-modal="true">
+      <div class="modal-sim-container">
+        <div class="modal-sim-header">
+          <span class="modal-sim-title" id="simTitle">Mobile Preview</span>
+          <button class="modal-close-btn" id="closeSimBtn" type="button" aria-label="Close Preview">&times;</button>
+        </div>
+
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <iframe id="simIframe" class="phone-iframe" src="about:blank"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="shell">
+        <p class="brand-foot">Nikah &amp; Wedding Cards</p>
+        <p>Handcrafted Digital Invitations &bull; Ready for Vercel &amp; Web</p>
+      </div>
+    </footer>
+
+    <script>
+      // Filter functionality
+      const filterPills = document.querySelectorAll(".filter-pill");
+      const cardItems = document.querySelectorAll(".card-item");
+
+      filterPills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          filterPills.forEach((p) => p.classList.remove("is-active"));
+          pill.classList.add("is-active");
+
+          const filter = pill.dataset.filter;
+          cardItems.forEach((card) => {
+            if (filter === "all" || card.dataset.theme === filter) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // Mobile simulator modal
+      const simModal = document.getElementById("simModal");
+      const simIframe = document.getElementById("simIframe");
+      const simTitle = document.getElementById("simTitle");
+      const closeSimBtn = document.getElementById("closeSimBtn");
+
+      document.querySelectorAll(".btn-preview-phone").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const url = btn.dataset.url;
+          const name = btn.dataset.name;
+          simTitle.textContent = name;
+          simIframe.src = url;
+          simModal.classList.add("is-open");
+        });
+      });
+
+      function closeSim() {
+        simModal.classList.remove("is-open");
+        simIframe.src = "about:blank";
+      }
+
+      closeSimBtn.addEventListener("click", closeSim);
+      simModal.addEventListener("click", (e) => {
+        if (e.target === simModal) closeSim();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSim();
+      });
+    </script>
+  </body>
+</html>
