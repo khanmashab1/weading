@@ -608,6 +608,157 @@ window.INVITATION_CONFIGS = {
       champagne: "#D9A779",   /* rose gold & warm champagne */
     },
   },
+
+  ivory: {
+    id: "ivory",
+    name: "Royal Ivory & Brushed Gold",
+    tagline: "Noor Minimalist Opulence",
+    tag: "Royal Ivory Luxe",
+    accentColor: "#D4AF37",
+    bgPreview: "linear-gradient(135deg, #FAF6EE, #EADCC8)",
+    site: {
+      title: "Ayla & Daniyal | Nikah Invitation",
+      description:
+        "Join us to celebrate the Nikah of Ayla & Daniyal — Saturday, 14th August 2027.",
+    },
+    couple: {
+      brideInitial: "A",
+      groomInitial: "D",
+      bride: {
+        name: "Ayla",
+        relation: "Daughter of",
+        parents: "Dr. & Mrs. Imran Qureshi",
+      },
+      groom: {
+        name: "Daniyal",
+        relation: "Son of",
+        parents: "Engr. & Mrs. Asim Siddiqui",
+      },
+    },
+    copy: {
+      bismillah: "﷽",
+      bismillahTranslation:
+        "“And among His signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts.” (Surah Ar-Rum 30:21)",
+      welcomeLine: "Under the divine grace and light of Allah (SWT),\nwe request the honor of your presence at the Nikah of",
+      invitation: "",
+      heroClosing: "as they begin a lifetime illuminated\nby unconditional love, faith, and peace.",
+      welcomeTitle: "A Union of Souls & Light",
+      welcomeBody:
+        "With deep gratitude and joy, we invite our closest family and cherished friends to join us as Ayla and Daniyal commit their hearts in sacred Nikah. May this beautiful beginning be illuminated by your warm presence and heartfelt prayers.",
+      gifts:
+        "Your presence and heartfelt duas are the only gifts we request on this blessed day.",
+      closing: "We look forward to welcoming you with joy.",
+      dua: "بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ",
+      duaTranslation:
+        "May Allah bless you both, shower His blessings upon you, and join you together in goodness.",
+    },
+    wedding: {
+      isoDate: "2027-08-14T18:00:00+05:30",
+      date: "August 14, 2027",
+      day: "Saturday",
+      time: "06:00 PM",
+      timezone: "IST",
+    },
+    media: {
+      introVideo: "./media/intro-ivory.mp4",
+      introPoster: "./media/intro-ivory.webp",
+      music: "./media/music-placeholder.mp3",
+      floralDivider: "./assets/images/floral-divider-ivory.webp",
+      scratchFrame: "./assets/images/scratch-frame-ivory.webp",
+      gallery: [
+        {
+          src: "./media/gallery/01.webp",
+          alt: "Royal Ivory floral and gold stage decor",
+          caption: "",
+        },
+        {
+          src: "./media/gallery/02.webp",
+          alt: "Family celebration and warm smiles",
+          caption: "",
+        },
+        {
+          src: "./media/gallery/03.webp",
+          alt: "Candlelit tables with white florals and gold filigree",
+          caption: "",
+        },
+      ],
+    },
+    program: [
+      {
+        time: "05:30 PM",
+        title: "Guest Reception",
+        note: "Warm welcome with saffron kahwa and rose sherbet",
+      },
+      {
+        time: "06:00 PM",
+        title: "Nikah Solemnisation",
+        note: "Ijab-o-Qubool, Quranic sermon, and communal dua",
+      },
+      {
+        time: "07:00 PM",
+        title: "Family Congratulation",
+        note: "Greetings, sweets, and portraits with the couple",
+      },
+      {
+        time: "08:00 PM",
+        title: "Royal Banquet Dinner",
+        note: "An exquisite multi-course royal feast",
+      },
+    ],
+    venue: {
+      name: "The Taj Mahal Palace",
+      address: "Apollo Bunder, Colaba, Mumbai",
+      mapUrl: "https://maps.app.goo.gl/9SjDC3RRg9jHZty59",
+    },
+    dressCode: {
+      title: "Royal Ivory, Gold & Pastel Formals",
+      description:
+        "Traditional festive or formal evening attire. Gold, champagne, pearl, sage, and jewel-toned suits, sherwanis, sarees, and anarkalis are warmly suggested.",
+      swatches: ["#FAF6EE", "#D4AF37", "#2C2621", "#C5A059", "#E8DAC8"],
+    },
+    preWeddingEvents: [
+      {
+        name: "White & Gold Haldi",
+        date: "August 11",
+        time: "11:00 AM",
+        location: "Palace Sea Lounge",
+        mapLink: "https://maps.app.goo.gl/c4WZJk71NhKc7CDGA",
+      },
+      {
+        name: "Mehndi Celebration",
+        date: "August 12",
+        time: "5:00 PM",
+        location: "Crystal Ballroom",
+        mapLink: "https://maps.app.goo.gl/c4WZJk71NhKc7CDGA",
+      },
+      {
+        name: "Walima Feast",
+        date: "August 16",
+        time: "7:30 PM",
+        location: "Grand Ballroom, The Taj",
+        mapLink: "https://maps.app.goo.gl/VY3FM2kntM26syuJ8",
+      },
+    ],
+    rsvp: {
+      deadline: "Kindly respond by July 10, 2027",
+      contact: "For inquiries, WhatsApp +91 98765 43214",
+      fields: {
+        name: "Your full name",
+        email: "Email address",
+        attendance: ["Joyfully accepts", "Regretfully declines"],
+        guests: ["1 guest", "2 guests", "3 guests", "4 guests"],
+        note: "Dietary preferences or warm wishes",
+      },
+    },
+    theme: {
+      ivory: "#FAF6EE",       /* luminous pure alabaster cream */
+      plum: "#1E1A17",        /* deep warm obsidian espresso (for text & structure) */
+      lavender: "#3D342D",    /* rich bronze-espresso accent */
+      mauve: "#8E6D38",       /* warm brushed gold tone */
+      lilac: "#E8DAC8",       /* soft champagne silk */
+      champagne: "#D4AF37",   /* radiant 24K gold */
+    },
+  },
 };
 
 /**
