@@ -1066,6 +1066,18 @@
         });
       });
 
+      // Make whole card clickable to open template
+      cardItems.forEach((card) => {
+        card.style.cursor = "pointer";
+        card.addEventListener("click", (e) => {
+          if (e.target.closest(".btn-preview-phone")) return;
+          const openBtn = card.querySelector(".btn-open-card");
+          if (openBtn && openBtn.href) {
+            window.location.href = openBtn.href;
+          }
+        });
+      });
+
       // Mobile simulator modal
       const simModal = document.getElementById("simModal");
       const simIframe = document.getElementById("simIframe");

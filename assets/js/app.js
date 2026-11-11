@@ -76,6 +76,11 @@ document.addEventListener("dragstart", (event) => {
       root.style.setProperty(`--${name}`, value);
     });
 
+    const openingLabel = select(".opening-label");
+    if (openingLabel && !openingLabel.textContent.trim()) {
+      openingLabel.textContent = "Tap to Open";
+    }
+
     if (config.media.floralDivider) {
       selectAll(".floral-divider img").forEach((img) => {
         img.src = config.media.floralDivider;
@@ -320,24 +325,33 @@ function showSlide(index) {
       hero.removeAttribute("role");
       hero.removeAttribute("aria-label");
       hero.tabIndex = -1;
-      select("#openingMark").setAttribute("aria-hidden", "true");
+      const openingMark = select("#openingMark");
+      if (openingMark) openingMark.setAttribute("aria-hidden", "true");
       document.body.classList.remove("intro-locked");
-      video.play().catch(() => undefined);
+      if (video) video.play().catch(() => undefined);
       const audio = select("#backgroundMusic");
 
-audio.play()
-  .then(updateMusicControl)
-  .catch(updateMusicControl);
+      if (audio) {
+        audio.play()
+          .then(updateMusicControl)
+          .catch(updateMusicControl);
+      }
     }
 
     hero.addEventListener("click", openInvitation);
+    hero.addEventListener("pointerdown", (e) => {
+      if (!opened && e.button === 0) openInvitation();
+    });
     hero.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") openInvitation();
     });
 
-    select(".scroll-cue").addEventListener("click", (event) => {
-      event.stopPropagation();
-    });
+    const scrollCue = select(".scroll-cue");
+    if (scrollCue) {
+      scrollCue.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+    }
   }
 
   function initializeMusic() {
