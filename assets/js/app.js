@@ -315,9 +315,21 @@ function showSlide(index) {
     const hero = select("#hero");
     const video = select("#introVideo");
     let opened = false;
+    let cardRevealed = false;
+
+    function revealCard() {
+      if (cardRevealed) return;
+      cardRevealed = true;
+      hero.classList.add("card-shown");
+      document.body.classList.remove("intro-locked");
+    }
 
     function openInvitation() {
-      if (opened) return;
+      if (opened) {
+        // If clicked again while doors are opening, instantly show the card
+        revealCard();
+        return;
+      }
 
       opened = true;
       hero.classList.remove("is-closed");
@@ -325,22 +337,44 @@ function showSlide(index) {
       hero.removeAttribute("role");
       hero.removeAttribute("aria-label");
       hero.tabIndex = -1;
+
       const openingMark = select("#openingMark");
       if (openingMark) openingMark.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("intro-locked");
-      if (video) video.play().catch(() => undefined);
-      const audio = select("#backgroundMusic");
 
+      const audio = select("#backgroundMusic");
       if (audio) {
         audio.play()
           .then(updateMusicControl)
           .catch(updateMusicControl);
       }
+
+      if (video) {
+        video.currentTime = 0;
+        video.play().catch(() => undefined);
+
+        // Wait until doors or archway open fully (~3.2s) before showing card
+        const doorOpenDelay = (config.media && config.media.doorOpenDelay) || 3.2;
+
+        const checkTime = () => {
+          if (video.currentTime >= doorOpenDelay || video.ended) {
+            revealCard();
+            video.removeEventListener("timeupdate", checkTime);
+          }
+        };
+
+        video.addEventListener("timeupdate", checkTime);
+        video.addEventListener("ended", revealCard, { once: true });
+
+        // Fallback timer if video timeupdate is throttled
+        setTimeout(revealCard, (doorOpenDelay + 0.3) * 1000);
+      } else {
+        setTimeout(revealCard, 800);
+      }
     }
 
     hero.addEventListener("click", openInvitation);
     hero.addEventListener("pointerdown", (e) => {
-      if (!opened && e.button === 0) openInvitation();
+      if (e.button === 0) openInvitation();
     });
     hero.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") openInvitation();
@@ -352,6 +386,43 @@ function showSlide(index) {
         event.stopPropagation();
       });
     }
+  }
+
+  function initializeIntroSwitcher() {
+    const switcher = select("#introSwitcher");
+    if (!switcher) return;
+
+    const pills = selectAll(".intro-pill", switcher);
+    const video = select("#introVideo");
+    const videoSource = select("#introVideoSource");
+    const hero = select("#hero");
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", (e) => {
+        e.stopPropagation();
+        pills.forEach((p) => p.classList.toggle("is-active", p === pill));
+
+        const introType = pill.dataset.intro;
+        let nextVideo = "./media/intro-Royal_palace_doors_opening.mp4";
+        let nextPoster = "./media/intro-Royal_palace_doors_opening.webp";
+
+        if (introType === "archway") {
+          nextVideo = "./media/intro-Marble_archway.mp4";
+          nextPoster = "./media/intro-Marble_archway.webp";
+        }
+
+        if (video && videoSource) {
+          video.pause();
+          video.poster = nextPoster;
+          videoSource.src = nextVideo;
+          video.load();
+
+          if (hero && hero.classList.contains("is-open")) {
+            video.play().catch(() => {});
+          }
+        }
+      });
+    });
   }
 
   function initializeMusic() {
@@ -1138,6 +1209,7 @@ function createPetalShower() {
     applyConfig();
     initializeOpening();
     initializeMusic();
+    initializeIntroSwitcher();
     initializeRevealAnimations();
     initializeScratchCard();
     initializeCountdown();
