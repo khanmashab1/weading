@@ -6,6 +6,20 @@
 <title>Nikah Cards — Invitations Worth the Entrance</title>
 <meta name="description" content="Bespoke Islamic digital wedding invitations with cinematic door-opening intros, scratch-to-reveal dates, live countdowns and multi-event itineraries.">
 <meta name="theme-color" content="#0e0305">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nikah Cards">
+<meta property="og:title" content="Nikah Cards — Invitations Worth the Entrance">
+<meta property="og:description" content="Bespoke Islamic digital wedding invitations with cinematic door-opening intros, scratch-to-reveal dates, live countdowns and multi-event itineraries.">
+<meta property="og:url" content="https://faiza-aawaiz.vercel.app/">
+<meta property="og:image" content="https://faiza-aawaiz.vercel.app/og-image.jpg?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nikah Cards — Invitations Worth the Entrance">
+<meta name="twitter:description" content="Bespoke Islamic digital wedding invitations with cinematic door-opening intros, scratch-to-reveal dates, live countdowns and multi-event itineraries.">
+<meta name="twitter:image" content="https://faiza-aawaiz.vercel.app/og-image.jpg?v=6">
+
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,9 +102,15 @@ body.ready .rise{animation:fadeUp 1s calc(var(--d,0)*1s) both}
 .cv::before,.invite::before{content:'';position:absolute;inset:0;opacity:.13;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23C9A35F' stroke-width='.8'%3E%3Crect x='11' y='11' width='22' height='22'/%3E%3Crect x='11' y='11' width='22' height='22' transform='rotate(45 22 22)'/%3E%3C/g%3E%3C/svg%3E")}
 .cv .bsm{font:400 7cqw 'Amiri',serif;color:var(--accent);position:relative}
-.arch{flex:1;width:80%;margin:4cqw 0;border-radius:999px 999px 10px 10px;border:1px solid var(--accent);overflow:hidden}
+.arch{flex:1;width:80%;margin:4cqw 0;border-radius:999px 999px 10px 10px;border:1px solid var(--accent);overflow:hidden;position:relative}
+.card-poster,.cover-poster,.tile-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.arch .card-poster{border-radius:inherit;transition:opacity .8s;z-index:1}
+.arch video{z-index:2}
+.arch.hasvid .card-poster{opacity:0}
 .arch video,.backdrop video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s}
 .arch.hasvid::after{display:none}
+.cover-poster{z-index:0;transition:opacity .8s}
+.cover.has-video .cover-poster{opacity:0}
 .c-names{font:400 16cqw/.95 var(--script);position:relative}
 .c-names i{font:italic 400 6cqw var(--serif);color:var(--accent);padding:0 1.5cqw}
 .c-title{font:500 4.2cqw var(--sans);letter-spacing:.3em;text-transform:uppercase;margin-top:3cqw;color:var(--accent);position:relative}
@@ -190,13 +210,15 @@ body.ready .rise{animation:fadeUp 1s calc(var(--d,0)*1s) both}
 .hint .b{display:none}.stage.opened .hint .a{display:none}.stage.opened .hint .b{display:inline}
 
 /* intro switcher */
-.switcher{display:none;gap:2px;padding:4px;border-radius:99px;z-index:70;
-  background:rgba(18,4,6,.6);backdrop-filter:blur(14px);border:1px solid rgba(201,163,95,.55);box-shadow:0 10px 30px -10px #000}
+.switcher{display:none;gap:3px;padding:4px;border-radius:99px;z-index:70;
+  background:rgba(18,4,6,.75);backdrop-filter:blur(14px);border:1px solid rgba(201,163,95,.55);box-shadow:0 10px 30px -10px #000}
 .switcher.show{display:flex}
-.switcher button{display:flex;align-items:center;padding:8px 11px;border-radius:99px;font:600 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);transition:.4s}
-.switcher button span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .5s,margin .5s}
+.switcher button{display:flex;align-items:center;padding:6px 12px;border-radius:99px;font:600 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);transition:.4s}
+.sw-pic{width:18px;height:18px;border-radius:50%;background-size:cover;background-position:center;border:1px solid var(--accent);flex-shrink:0;margin-right:6px;box-shadow:0 0 6px rgba(0,0,0,.5)}
+.switcher button.on .sw-pic{border-color:#2a1305}
+.switcher button span.lbl{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .5s,margin .5s}
 .switcher button.on{background:linear-gradient(135deg,#f0d9a6,#C9A35F 50%,#a67f36);color:#2a1305}
-.switcher button.on span{max-width:130px;margin-left:6px}
+.switcher button.on span.lbl{max-width:130px}
 
 .screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--bg2);container-type:inline-size;isolation:isolate}
 
@@ -329,9 +351,11 @@ body.ready .rise{animation:fadeUp 1s calc(var(--d,0)*1s) both}
 .bt svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
 .grid{max-width:1250px;grid-template-columns:repeat(5,1fr)}
 .tile{display:block;text-align:center}
-.tile .art{aspect-ratio:3/4.3;border-radius:999px 999px 14px 14px;border:1px solid color-mix(in srgb,var(--accent) 70%,transparent);transition:.5s;color:var(--ink)}
+.tile .art{aspect-ratio:3/4.3;border-radius:999px 999px 14px 14px;border:1px solid color-mix(in srgb,var(--accent) 70%,transparent);transition:.5s;color:var(--ink);overflow:hidden;position:relative}
 .tile:hover .art{transform:translateY(-8px);box-shadow:0 30px 60px -20px rgba(var(--glow),.55)}
-.tile .tn{position:absolute;z-index:2;left:0;right:0;bottom:13%;font:400 clamp(28px,3vw,40px)/.95 var(--script)}
+.tile-poster{border-radius:inherit;opacity:.75;transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1)}
+.tile:hover .tile-poster{opacity:1;transform:scale(1.06)}
+.tile .tn{position:absolute;z-index:2;left:0;right:0;bottom:13%;font:400 clamp(28px,3vw,40px)/.95 var(--script);text-shadow:0 2px 14px rgba(0,0,0,.85)}
 .tile .tn i{display:block;font:italic 400 15px var(--serif);color:var(--accent);margin:2px 0}
 .tile .tt{display:block;margin-top:14px;font:500 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.8}
 .cta{max-width:900px;margin:auto;text-align:center;padding:clamp(40px,7vw,80px) 28px;border:1px solid var(--line);border-radius:36px;
@@ -412,7 +436,8 @@ body.phone-open{overscroll-behavior:none}
   /* 44px+ touch targets */
   .arrow{width:52px;height:52px}
   .bar button{width:42px;height:42px}
-  .switcher button{padding:10px 13px}
+  .switcher button{padding:8px 12px}
+  .switcher .sw-pic{width:22px;height:22px}
 
   /* sections */
   .sect{padding:64px 18px}
@@ -559,7 +584,7 @@ const THEMES = [
    tags:['Mughal Velvet','Burgundy','Antique Gold'],
    bg1:'#3A070C', bg2:'#1c0306', ink:'#F1E3CE', accent:'#C9A35F', accentInk:'#2a1305', glow:'201,163,95', amb:['#3A070C','#120204'],
    scene:'radial-gradient(circle at 50% 30%,rgba(246,210,138,.35),transparent 55%),linear-gradient(180deg,#6a1219,#2a0509)',
-   video:'media/intro-Royal_palace_doors_opening.mp4', date:'2026-10-18T17:30:00', venue:'Hyatt Regency', city:'Chennai',
+   video:'media/intro-Royal_palace_doors_opening.mp4', poster:'media/intro-Royal_palace_doors_opening.webp', date:'2026-10-18T17:30:00', venue:'Hyatt Regency', city:'Chennai',
    swatches:[['Burgundy','#6b1020'],['Forest Green','#1f4d3a'],['Gold','#C9A35F'],['Mauve','#8e6678']] },
 
  { id:'marble', group:'alizeh', intro:{icon:'🕌',label:'Marble Archway'}, parents:['Mr. & Mrs. Farooq Ahmed','Mr. & Mrs. Altaf Hussain'],
@@ -568,7 +593,7 @@ const THEMES = [
    tags:['White Marble','Courtyard','Lanterns'],
    bg1:'#f4efe6', bg2:'#d8cfbf', ink:'#3b2a14', accent:'#9c7633', accentInk:'#fff8e8', glow:'236,224,200', amb:['#2b2a2d','#0f0e12'],
    scene:'radial-gradient(circle at 50% 100%,rgba(255,226,160,.7),transparent 55%),linear-gradient(180deg,#fbf8f1,#cfc5b3)',
-   video:'media/intro-Marble_archway.mp4', date:'2026-10-18T17:30:00', venue:'ITC Grand Chola', city:'Chennai',
+   video:'media/intro-Marble_archway.mp4', poster:'media/intro-Marble_archway.webp', date:'2026-10-18T17:30:00', venue:'ITC Grand Chola', city:'Chennai',
    swatches:[['Ivory','#f1e6d2'],['Sage','#9aa98a'],['Gold','#b98d3e'],['Dusty Rose','#c99a97']] },
 
  { id:'ivory', title:'Royal Ivory Silk', couple:['Ayla','Daniyal'], motif:'silk', mode:'part',
@@ -576,7 +601,7 @@ const THEMES = [
    tags:['Noor','Ivory Silk','Brushed Gold'],
    bg1:'#faf4e6', bg2:'#e8dbbd', ink:'#4a3416', accent:'#a77d33', accentInk:'#fffaf0', glow:'241,227,190', amb:['#3a2f1e','#14100a'],
    scene:'radial-gradient(circle at 50% 25%,rgba(255,255,255,.9),transparent 55%),linear-gradient(170deg,#fffaf0,#e3d3ae)',
-   video:'media/intro-ivory.mp4', date:'2026-11-14T17:00:00', venue:'The Grand Ballroom', city:'Hyderabad',
+   video:'media/intro-ivory.mp4', poster:'media/intro-ivory.webp', date:'2026-11-14T17:00:00', venue:'The Grand Ballroom', city:'Hyderabad',
    swatches:[['Ivory','#f5ecd7'],['Champagne','#d9c08a'],['Taupe','#9b8a73'],['Gold','#a77d33']] },
 
  { id:'emerald', title:'Imperial Emerald', couple:['Zoya','Hamza'], motif:'garden', mode:'part',
@@ -584,7 +609,7 @@ const THEMES = [
    tags:['Zamrud Garden','Emerald','Filigree'],
    bg1:'#0d4231', bg2:'#04180f', ink:'#f0e6c8', accent:'#d4b06a', accentInk:'#10281d', glow:'70,170,125', amb:['#06301f','#020d08'],
    scene:'radial-gradient(circle at 50% 35%,rgba(120,220,170,.3),transparent 55%),linear-gradient(180deg,#14624a,#062a1d)',
-   video:'media/intro-emerald.mp4', date:'2026-11-28T18:00:00', venue:'The Emerald Gardens', city:'Lucknow',
+   video:'media/intro-emerald.mp4', poster:'media/intro-emerald.webp', date:'2026-11-28T18:00:00', venue:'The Emerald Gardens', city:'Lucknow',
    swatches:[['Emerald','#0f5a43'],['Antique Gold','#d4b06a'],['Cream','#efe3c4'],['Olive','#6b7a3a']] },
 
  { id:'sapphire', title:'Midnight Sapphire', couple:['Sarah','Rehan'], motif:'night', mode:'swing',
@@ -592,7 +617,7 @@ const THEMES = [
    tags:['Arabian Night','Navy','Starlight'],
    bg1:'#0f2557', bg2:'#050b24', ink:'#ece6d4', accent:'#e0c27a', accentInk:'#0a1330', glow:'110,140,240', amb:['#0a1a45','#030614'],
    scene:'radial-gradient(circle at 50% 20%,rgba(110,140,240,.35),transparent 55%),linear-gradient(180deg,#16347a,#060d2c)',
-   video:'media/intro-sapphire.mp4', date:'2026-12-12T19:00:00', venue:'The Starlit Terrace', city:'Dubai',
+   video:'media/intro-sapphire.mp4', poster:'media/intro-sapphire.webp', date:'2026-12-12T19:00:00', venue:'The Starlit Terrace', city:'Dubai',
    swatches:[['Sapphire','#14327a'],['Silver','#b9c0d4'],['Gold','#e0c27a'],['Midnight','#070d2a']] },
 
  { id:'blush', title:'Blush Rose Luxe', couple:['Zainab','Bilal'], motif:'rose', mode:'part',
@@ -600,7 +625,7 @@ const THEMES = [
    tags:['Pastel Flora','Champagne Pearl','Rose Gold'],
    bg1:'#fbe6e3', bg2:'#ecc0bc', ink:'#5a2a30', accent:'#b76e79', accentInk:'#fff5f3', glow:'240,170,175', amb:['#4a1f2a','#150709'],
    scene:'radial-gradient(circle at 50% 30%,rgba(255,255,255,.8),transparent 55%),linear-gradient(170deg,#fde9e6,#ebb7b3)',
-   video:'media/intro-rose.mp4', date:'2027-01-09T17:00:00', venue:'The Rose Pavilion', city:'Jaipur',
+   video:'media/intro-rose.mp4', poster:'media/intro-rose.webp', date:'2027-01-09T17:00:00', venue:'The Rose Pavilion', city:'Jaipur',
    swatches:[['Blush','#f3c6c3'],['Champagne','#e8d3b0'],['Rose Gold','#b76e79'],['Sage','#a3b09a']] },
 
  { id:'riad', title:'Moroccan Riad Zellige', couple:['Maryam','Idris'], motif:'zellige', mode:'swing',
@@ -608,7 +633,7 @@ const THEMES = [
    tags:['Zellige Tile','Cedar & Brass','Turquoise'],
    bg1:'#0c4a52', bg2:'#041f24', ink:'#f6ead0', accent:'#e0b25c', accentInk:'#1b1205', glow:'60,170,180', amb:['#07343a','#020d0f'],
    scene:'radial-gradient(circle at 50% 30%,rgba(255,200,110,.3),transparent 55%),linear-gradient(180deg,#127080,#06262c)',
-   video:'media/intro-Moroccan_riad_doors.mp4', date:'2027-02-06T18:00:00', venue:'Riad Al Yasmin', city:'Marrakech',
+   video:'media/intro-placeholder.mp4', poster:'media/intro-placeholder.webp', date:'2027-02-06T18:00:00', venue:'Riad Al Yasmin', city:'Marrakech',
    swatches:[['Zellige Teal','#127080'],['Terracotta','#c4623a'],['Brass','#e0b25c'],['Cream','#f1e4c8']] },
 
  { id:'persian', title:'Persian Turquoise Iwan', couple:['Layla','Kamran'], motif:'iwan', mode:'part',
@@ -616,7 +641,7 @@ const THEMES = [
    tags:['Muqarnas','Turquoise','Gilded Dome'],
    bg1:'#f3ecdc', bg2:'#c9dcd8', ink:'#0e3b46', accent:'#a8802f', accentInk:'#fffaf0', glow:'80,190,200', amb:['#0b3a44','#02101a'],
    scene:'radial-gradient(circle at 50% 100%,rgba(255,226,160,.6),transparent 55%),linear-gradient(180deg,#e9f3f0,#9fcbc7)',
-   video:'media/intro-Persian_iwan.mp4', date:'2027-02-20T17:30:00', venue:'The Turquoise Iwan', city:'Istanbul',
+   video:'media/intro-petals.mp4', poster:'media/intro-petals.webp', date:'2027-02-20T17:30:00', venue:'The Turquoise Iwan', city:'Istanbul',
    swatches:[['Turquoise','#2fa3a8'],['Ivory','#f3ecdc'],['Gold','#a8802f'],['Lapis','#1f3f8f']] },
 
  { id:'noir', title:'Noir Gold Deco', couple:['Hana','Zayd'], motif:'deco', mode:'part',
@@ -624,7 +649,7 @@ const THEMES = [
    tags:['Black Lacquer','Art Deco','Liquid Gold'],
    bg1:'#15110d', bg2:'#050403', ink:'#f3e7cb', accent:'#d9b25f', accentInk:'#150f05', glow:'217,178,95', amb:['#1b1610','#050403'],
    scene:'radial-gradient(circle at 50% 100%,rgba(217,178,95,.35),transparent 60%),linear-gradient(180deg,#221a12,#050403)',
-   video:'media/intro-Noir_gold_gates.mp4', date:'2027-03-06T19:00:00', venue:'The Gilded Ballroom', city:'London',
+   video:'media/intro-particles.mp4', poster:'media/intro-particles.webp', date:'2027-03-06T19:00:00', venue:'The Gilded Ballroom', city:'London',
    swatches:[['Onyx','#15110d'],['Champagne Gold','#d9b25f'],['Ivory','#efe4cc'],['Oxblood','#5b1620']] },
 
  { id:'haveli', title:'Rajputana Haveli Sunset', couple:['Aaliyah','Sameer'], motif:'haveli', mode:'swing',
@@ -632,7 +657,7 @@ const THEMES = [
    tags:['Haveli','Saffron Sunset','Marigold'],
    bg1:'#8a2f12', bg2:'#3a0f05', ink:'#fdeccb', accent:'#f0b94f', accentInk:'#2a0f02', glow:'240,150,70', amb:['#5a1c08','#160602'],
    scene:'radial-gradient(circle at 50% 60%,rgba(255,200,110,.55),transparent 55%),linear-gradient(180deg,#c24a1a,#4a1507)',
-   video:'media/intro-Haveli_doors_sunset.mp4', date:'2027-03-20T17:00:00', venue:'Samode Haveli', city:'Jaipur',
+   video:'media/intro-Royal_palace_doors_opening.mp4', poster:'media/intro-Royal_palace_doors_opening.webp', date:'2027-03-20T17:00:00', venue:'Samode Haveli', city:'Jaipur',
    swatches:[['Saffron','#e08a2a'],['Terracotta','#a8381a'],['Marigold','#f0b94f'],['Fuchsia','#b0305f']] }
 ];
 
@@ -642,7 +667,7 @@ const N=THEMES.length, mod=(a,n)=>((a%n)+n)%n, pad=v=>String(v).padStart(2,'0');
 const isMobile=()=>matchMedia('(max-width:959px)').matches;
 const themeVars=t=>`--bg1:${t.bg1};--bg2:${t.bg2};--ink:${t.ink};--accent:${t.accent};--accent-ink:${t.accentInk};--scene:${t.scene};--glow:${t.glow}`;
 // card previews: preload none, played only while the card is active (performance)
-const cardVid=t=>t.video?`<video src="${t.video}" muted loop playsinline webkit-playsinline preload="none" style="opacity:0" onloadeddata="this.style.opacity=1;this.parentNode.classList.add('hasvid')" onerror="this.remove()"></video>`:'';
+const cardVid=t=>t.video?`<video src="${t.video}" muted loop playsinline webkit-playsinline preload="none" poster="${t.poster||''}" style="opacity:0" onloadeddata="this.style.opacity=1;this.parentNode.classList.add('hasvid')" onerror="this.remove()"></video>`:'';
 const REDUCED=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* ═════════════ Splash ═════════════ */
@@ -732,7 +757,10 @@ ring.innerHTML=THEMES.map((t,i)=>`
   <div class="card" data-i="${i}" role="option" aria-label="${t.title}, ${t.couple[0]} and ${t.couple[1]}" style="${themeVars(t)}">
     <div class="cv">
       <span class="bsm">بِسْمِ ٱللَّٰهِ</span>
-      <div class="arch motif" data-motif="${t.motif}">${cardVid(t)}</div>
+      <div class="arch motif" data-motif="${t.motif}">
+        ${t.poster?`<img class="card-poster" src="${t.poster}" alt="${t.title}" loading="lazy">`:''}
+        ${cardVid(t)}
+      </div>
       <div class="c-names">${t.couple[0]}<i>&amp;</i>${t.couple[1]}</div>
       <div class="c-title">${t.title}</div>
     </div><div class="shade"></div>
@@ -751,7 +779,10 @@ $('#eyebrow').textContent='The Collection · '+pad(N)+' Signature Designs';
 // collection tiles
 $('#tiles').innerHTML=THEMES.map((t,i)=>`
   <button class="tile reveal" data-i="${i}" style="${themeVars(t)};--d:${(i%5)*.07}s" aria-label="Preview ${t.title}">
-    <div class="art motif" data-motif="${t.motif}"><span class="tn">${t.couple[0]}<i>&amp;</i>${t.couple[1]}</span></div>
+    <div class="art motif" data-motif="${t.motif}">
+      ${t.poster?`<img class="tile-poster" src="${t.poster}" alt="${t.title}" loading="lazy">`:''}
+      <span class="tn">${t.couple[0]}<i>&amp;</i>${t.couple[1]}</span>
+    </div>
     <span class="tt">${t.title}</span>
   </button>`).join('');
 $('#tiles').addEventListener('click',e=>{
@@ -861,8 +892,11 @@ function coverHTML(t){
   const ini=t.couple[0][0]+'&amp;'+t.couple[1][0];
   return `
  <div class="cover" id="cover">
-  <div class="backdrop">${t.video?`<video id="introVid" src="${t.video}#t=0.001" muted playsinline webkit-playsinline preload="auto"
-     onloadeddata="this.closest('.cover').classList.add('has-video')" onerror="this.remove()"></video>`:''}</div>
+  <div class="backdrop">
+    ${t.poster?`<img class="cover-poster" src="${t.poster}" alt="${t.title}">`:''}
+    ${t.video?`<video id="introVid" src="${t.video}#t=0.001" poster="${t.poster||''}" muted playsinline webkit-playsinline preload="auto"
+     onloadeddata="this.closest('.cover').classList.add('has-video')" onerror="this.remove()"></video>`:''}
+  </div>
   <div class="panel l"></div><div class="panel r"></div>
   <div class="cover-center">
     <span class="bsm">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
@@ -1036,7 +1070,7 @@ function renderSwitcher(i){
   const t=THEMES[i],sw=$('#switcher');
   const peers=THEMES.map((x,k)=>[x,k]).filter(([x])=>t.group&&x.group===t.group);
   sw.classList.toggle('show',peers.length>1);
-  sw.innerHTML=peers.map(([x,k])=>`<button role="tab" class="${k===i?'on':''}" data-i="${k}" aria-selected="${k===i}">${x.intro.icon}<span>${x.intro.label}</span></button>`).join('');
+  sw.innerHTML=peers.map(([x,k])=>`<button role="tab" class="${k===i?'on':''}" data-i="${k}" aria-selected="${k===i}"><span class="sw-pic" style="background-image:url('${x.poster}')"></span><span class="lbl">${x.intro.label}</span></button>`).join('');
 }
 $('#switcher').addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b||+b.dataset.i===active)return;

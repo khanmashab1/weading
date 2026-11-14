@@ -1,8 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#1d211d"/>
-  <g fill="none" stroke="#f4efe7" stroke-width="1.6">
-    <path d="M32 7 41 23l16 9-16 9-9 16-9-16-16-9 16-9Z"/>
-    <path d="M32 17 37 27l10 5-10 5-5 10-5-10-10-5 10-5Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#3A070C"/>
+      <stop offset="60%" stop-color="#1E0306"/>
+      <stop offset="100%" stop-color="#0A0102"/>
+    </radialGradient>
+
+    <!-- Gold Gradients -->
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3D1"/>
+      <stop offset="35%" stop-color="#E5C178"/>
+      <stop offset="70%" stop-color="#C9A35F"/>
+      <stop offset="100%" stop-color="#8C6527"/>
+    </linearGradient>
+
+    <linearGradient id="goldLight" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E5C178"/>
+      <stop offset="50%" stop-color="#FFF9E6"/>
+      <stop offset="100%" stop-color="#B88D3B"/>
+    </linearGradient>
+
+    <!-- Subtle Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Squircle Base with Gold Rim -->
+  <rect x="4" y="4" width="120" height="120" rx="32" fill="url(#bg)" stroke="url(#gold)" stroke-width="2.5"/>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="none" stroke="rgba(201,163,95,0.25)" stroke-width="1"/>
+
+  <!-- Centered Islamic 8-Point Star (Khatam al-Sulayman) -->
+  <g transform="translate(64, 64)" filter="url(#glow)">
+    <!-- Outer Square 1 -->
+    <rect x="-32" y="-32" width="64" height="64" rx="2" fill="none" stroke="url(#gold)" stroke-width="2.2"/>
+    <!-- Outer Square 2 (Rotated 45 deg) -->
+    <rect x="-32" y="-32" width="64" height="64" rx="2" fill="none" stroke="url(#gold)" stroke-width="2.2" transform="rotate(45)"/>
+
+    <!-- Inner Filigree Star -->
+    <rect x="-22" y="-22" width="44" height="44" fill="rgba(201,163,95,0.08)" stroke="url(#goldLight)" stroke-width="1.2"/>
+    <rect x="-22" y="-22" width="44" height="44" fill="rgba(201,163,95,0.08)" stroke="url(#goldLight)" stroke-width="1.2" transform="rotate(45)"/>
+
+    <!-- Sacred Mihrab / Arch Curve at Top -->
+    <path d="M -14 12 Q 0 -22 14 12" fill="none" stroke="url(#goldLight)" stroke-width="1.4" stroke-linecap="round"/>
+
+    <!-- Center Luminary Star / Diamond -->
+    <polygon points="0,-10 3,-3 10,0 3,3 0,10 -3,3 -10,0 -3,-3" fill="url(#gold)"/>
+    <circle cx="0" cy="0" r="2" fill="#FFF9E6"/>
+
+    <!-- Corner Star Dots -->
+    <circle cx="0" cy="-32" r="1.5" fill="url(#goldLight)"/>
+    <circle cx="0" cy="32" r="1.5" fill="url(#goldLight)"/>
+    <circle cx="-32" cy="0" r="1.5" fill="url(#goldLight)"/>
+    <circle cx="32" cy="0" r="1.5" fill="url(#goldLight)"/>
   </g>
-  <circle cx="32" cy="32" r="2.7" fill="#d1b986"/>
 </svg>
