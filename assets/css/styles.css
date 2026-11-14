@@ -169,15 +169,23 @@ main {
 }
 
 .hero-video {
-  transform: scale(1.025);
-  transition: filter 1.8s ease, transform 8s ease;
+  transform: scale(1);
+  transition: filter 1.8s ease, transform 6s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: -3;
   filter: none;
 }
 
 .is-open .hero-video {
-  transform: scale(1.08);
+  transform: scale(1.04);
   filter: none;
+}
+
+/* Wide viewports (tablet, foldable, desktop): step backward to reveal full archway, pillars, and floor */
+@media (min-aspect-ratio: 9/16) {
+  .hero-video {
+    object-fit: contain;
+    background: radial-gradient(circle at center, #241419 0%, #0d0609 100%);
+  }
 }
 
 .hero-veil {
@@ -2668,6 +2676,15 @@ img, video { image-rendering: auto; }
   align-items: center;
   gap: 10px;
   font-family: var(--font-body);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+}
+
+/* Hide dock while intro doors are closed/opening so they never obstruct the doors or ripple */
+.intro-locked .template-switcher-dock {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(28px) !important;
 }
 
 .template-switcher-trigger {
@@ -2965,10 +2982,18 @@ img, video { image-rendering: auto; }
 
 @media (max-width: 600px) {
   .template-switcher-dock {
-    bottom: 16px;
-    right: 16px;
-    left: 16px;
-    justify-content: center;
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    gap: 8px;
+  }
+  .template-switcher-trigger {
+    padding: 8px 14px;
+    font-size: 0.74rem;
+  }
+  .template-showcase-btn {
+    padding: 8px 12px;
+    font-size: 0.74rem;
   }
   .template-modal {
     width: 100vw;

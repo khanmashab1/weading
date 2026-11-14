@@ -392,6 +392,16 @@ function showSlide(index) {
     const videoSource = select("#introVideoSource");
     const hero = select("#hero");
 
+    // Synchronize initial active pill with active video in config
+    const isArchway = Boolean(config.media && config.media.introVideo && config.media.introVideo.includes("archway"));
+    pills.forEach((p) => {
+      if (isArchway) {
+        p.classList.toggle("is-active", p.dataset.intro === "archway");
+      } else {
+        p.classList.toggle("is-active", p.dataset.intro === "doors");
+      }
+    });
+
     pills.forEach((pill) => {
       pill.addEventListener("click", (e) => {
         e.stopPropagation();
