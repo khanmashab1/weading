@@ -935,7 +935,7 @@
               <i></i> Live Card
             </div>
             <div class="card-visual-info">
-              <h3 class="couple-title">Faiza &amp; Aawaiz</h3>
+              <h3 class="couple-title">Alizeh &amp; Farhan</h3>
               <p class="theme-sub">Royal Velvet &amp; Palace Doors</p>
             </div>
           </div>
@@ -973,7 +973,7 @@
                 class="btn-preview-phone"
                 type="button"
                 data-url="./templates/burgundy/index.html?intro=doors"
-                data-name="Faiza &amp; Aawaiz (Palace Doors)"
+                data-name="Alizeh &amp; Farhan (Palace Doors)"
               >
                 📱 Mobile View
               </button>
@@ -1000,7 +1000,7 @@
               <i></i> Live Card
             </div>
             <div class="card-visual-info">
-              <h3 class="couple-title">Faiza &amp; Aawaiz</h3>
+              <h3 class="couple-title">Alizeh &amp; Farhan</h3>
               <p class="theme-sub">Royal Velvet &amp; Marble Archway</p>
             </div>
           </div>
@@ -1038,7 +1038,7 @@
                 class="btn-preview-phone"
                 type="button"
                 data-url="./templates/burgundy/index.html?intro=archway"
-                data-name="Faiza &amp; Aawaiz (Marble Archway)"
+                data-name="Alizeh &amp; Farhan (Marble Archway)"
               >
                 📱 Mobile View
               </button>
@@ -1100,7 +1100,7 @@
 
         <div class="phone-frame">
           <div class="phone-notch"></div>
-          <iframe id="simIframe" class="phone-iframe" src="about:blank"></iframe>
+          <iframe id="simIframe" class="phone-iframe" src="about:blank" allow="autoplay *; fullscreen *; encrypted-media" playsinline webkit-playsinline></iframe>
         </div>
       </div>
     </div>
@@ -1153,9 +1153,17 @@
       const closeSimBtn = document.getElementById("closeSimBtn");
 
       document.querySelectorAll(".btn-preview-phone").forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
           const url = btn.dataset.url;
           const name = btn.dataset.name;
+
+          // On mobile screens, open template directly for superior performance and native video playback
+          if (window.innerWidth <= 768) {
+            window.location.href = url;
+            return;
+          }
+
           simTitle.textContent = name;
           simIframe.src = url;
           simModal.classList.add("is-open");

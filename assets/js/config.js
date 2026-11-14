@@ -17,20 +17,20 @@ window.INVITATION_CONFIGS = {
     accentColor: "#C9A35F",
     bgPreview: "linear-gradient(135deg, #3A070C, #6F0B17)",
     site: {
-      title: "Faiza & Aawaiz | Nikah Invitation",
+      title: "Alizeh & Farhan | Nikah Invitation",
       description:
-        "Join us to celebrate the Nikah of Faiza & Aawaiz — Sunday, 18th October 2026.",
+        "Join us to celebrate the Nikah of Alizeh & Farhan — Sunday, 18th October 2026.",
     },
     couple: {
-      brideInitial: "F",
-      groomInitial: "A",
+      brideInitial: "A",
+      groomInitial: "F",
       bride: {
-        name: "Faiza",
+        name: "Alizeh",
         relation: "Daughter of",
         parents: "Mr. & Mrs. Farooq Ahmed",
       },
       groom: {
-        name: "Aawaiz",
+        name: "Farhan",
         relation: "Son of",
         parents: "Mr. & Mrs. Altaf Hussain",
       },
@@ -228,6 +228,7 @@ window.INVITATION_CONFIGS = {
     media: {
       introVideo: "./media/intro-emerald.mp4",
       introPoster: "./media/intro-emerald.webp",
+      doorOpenDelay: 3.5,
       music: "./media/music-placeholder.mp3",
       floralDivider: "./assets/images/floral-divider-emerald.webp",
       scratchFrame: "./assets/images/scratch-frame-emerald.webp",
@@ -378,6 +379,7 @@ window.INVITATION_CONFIGS = {
     media: {
       introVideo: "./media/intro-sapphire.mp4",
       introPoster: "./media/intro-sapphire.webp",
+      doorOpenDelay: 3.5,
       music: "./media/music-placeholder.mp3",
       floralDivider: "./assets/images/floral-divider-sapphire.webp",
       scratchFrame: "./assets/images/scratch-frame-sapphire.webp",
@@ -528,6 +530,7 @@ window.INVITATION_CONFIGS = {
     media: {
       introVideo: "./media/intro-rose.mp4",
       introPoster: "./media/intro-rose.webp",
+      doorOpenDelay: 3.5,
       music: "./media/music-placeholder.mp3",
       floralDivider: "./assets/images/floral-divider-rose.webp",
       scratchFrame: "./assets/images/scratch-frame-rose.webp",
@@ -679,6 +682,7 @@ window.INVITATION_CONFIGS = {
     media: {
       introVideo: "./media/intro-ivory.mp4",
       introPoster: "./media/intro-ivory.webp",
+      doorOpenDelay: 3.5,
       music: "./media/music-placeholder.mp3",
       floralDivider: "./assets/images/floral-divider-ivory.webp",
       scratchFrame: "./assets/images/scratch-frame-ivory.webp",

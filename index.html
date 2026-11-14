@@ -1,317 +1,1027 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nikah Cards — Invitations Worth the Entrance</title>
+<meta name="description" content="Bespoke Islamic digital wedding invitations with cinematic door-opening intros, scratch-to-reveal dates, live countdowns and guest directions.">
+<meta name="theme-color" content="#0e0305">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <title>Faiza &amp; Aawaiz | Nikah Invitation</title>
-    <meta name="description" content="Join us to celebrate the Nikah of Faiza &amp; Aawaiz — Sunday, 18th October 2026." />
-    <meta name="theme-color" content="#3A070C" />
+<style>
+:root{
+  --burg:#3A070C; --ivory:#F1E3CE; --gold:#C9A35F; --line:rgba(201,163,95,.28);
+  --serif:'Cormorant Garamond',Georgia,serif; --script:'Allura',cursive; --sans:'DM Sans',system-ui,sans-serif;
+  --ph:min(720px,80vh); --glow:201,163,95;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:#0e0305;color:var(--ivory);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.phone-open{overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Faiza &amp; Aawaiz" />
-    <meta property="og:title" content="Faiza &amp; Aawaiz | Nikah Invitation" />
-    <meta property="og:description" content="Join us to celebrate the Nikah of Faiza &amp; Aawaiz — Sunday, 18th October 2026." />
-    <meta property="og:url" content="https://faiza-aawaiz.vercel.app/" />
-    <meta property="og:image" content="https://faiza-aawaiz.vercel.app/og-image-faiza-aawaiz.jpg?v=4" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Faiza &amp; Aawaiz | Nikah Invitation" />
-    <meta name="twitter:image" content="https://faiza-aawaiz.vercel.app/og-image-faiza-aawaiz.jpg?v=4" />
+/* ───────── Splash ───────── */
+.splash{position:fixed;inset:0;z-index:200;background:#0e0305;display:grid;place-items:center;text-align:center;transition:opacity .9s .15s,visibility 0s 1.1s}
+.splash.hide{opacity:0;visibility:hidden}
+.sp-b{font:400 clamp(70px,13vw,130px)/1 var(--script);color:var(--gold);animation:fadeUp 1s both}
+.sp-l{height:1px;width:0;margin:8px auto 14px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:grow 1.2s .3s forwards}
+.sp-s{font:600 12px var(--sans);letter-spacing:.6em;text-transform:uppercase;padding-left:.6em;animation:fadeUp 1s .4s both}
+@keyframes grow{to{width:240px}}
 
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="./media/intro-Royal_palace_doors_opening.webp" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500&family=Cormorant+Infant:ital,wght@0,300..700;1,300..700&display=swap" />
-    <link rel="stylesheet" href="./assets/css/styles.css?v=14" />
+/* ───────── Ambient world ───────── */
+.amb{position:fixed;inset:0;opacity:0;transition:opacity 1.4s ease;z-index:0}
+.amb.on{opacity:1}
+#dust{position:fixed;inset:0;z-index:1;pointer-events:none}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.6))}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-    <script src="./assets/js/config.js?v=8" defer></script>
-    <script src="./assets/js/app.js?v=6" defer></script>
-  </head>
+/* ───────── Header ───────── */
+.top{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:16px 4vw;transition:.4s;
+  background:linear-gradient(180deg,rgba(10,2,4,.7),transparent)}
+.top.solid{background:rgba(14,3,5,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding-block:10px}
+.brand{font:400 36px/1 var(--script);color:var(--gold);text-decoration:none}
+.brand b{font:600 12px var(--sans);letter-spacing:.38em;text-transform:uppercase;color:var(--ivory);margin-left:8px}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a{font:500 11px var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;opacity:.7;transition:.3s}
+.nav a:hover{opacity:1;color:var(--gold)}
+.nav .pill{opacity:1;padding:10px 20px;border:1px solid rgba(201,163,95,.6);border-radius:99px;color:var(--gold)}
+.nav .pill:hover{background:var(--gold);color:#2a1305}
 
-  <body class="intro-locked">
-    <main id="invitation">
-      <audio id="backgroundMusic" loop preload="auto" autoplay></audio>
+/* ───────── Hero / studio ───────── */
+.studio{position:relative;z-index:2;min-height:100vh;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);
+  gap:2vw;align-items:center;padding:84px 4vw 36px}
+.selector{min-width:0;text-align:center}
+.rise{opacity:0}
+body.ready .rise{animation:fadeUp 1s calc(var(--d,0)*1s) both}
+.eyebrow{font:500 11px var(--sans);letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.selector h1{font:500 clamp(36px,4.3vw,66px)/1 var(--serif);margin:14px 0 10px;letter-spacing:-.01em}
+.selector h1 em{font:400 1.35em/.8 var(--script);color:var(--gold);padding:0 .05em}
+.lede{font-size:14px;opacity:.68;max-width:430px;margin:0 auto;line-height:1.7}
+.pills{display:none;justify-content:center;gap:6px;margin:14px 0 0}
+.pills i{width:8px;height:8px;border-radius:9px;background:rgba(241,227,206,.3);transition:.4s}
+.pills i.on{width:26px;background:var(--gold)}
 
-      <!-- Intro Video Switcher -->
-      <nav id="introSwitcher" class="intro-switcher" aria-label="Choose intro video">
-        <button type="button" class="intro-pill is-active" data-intro="doors" title="Royal Palace Doors Opening">
-          <span>🏛️ Palace Doors</span>
-        </button>
-        <button type="button" class="intro-pill" data-intro="archway" title="Grand Marble Archway">
-          <span>🕌 Marble Archway</span>
-        </button>
-      </nav>
+/* 3D ring */
+.ring-wrap{--cw:228px;--ch:372px;position:relative;height:calc(var(--ch) + 84px);perspective:1500px;overflow:hidden;margin-top:10px;
+  touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.ring-wrap:active{cursor:grabbing}
+.ring-wrap::before{content:'';position:absolute;left:50%;top:50%;width:calc(var(--cw) + 64px);height:calc(var(--ch) + 56px);transform:translate(-50%,-50%);
+  border:1px solid rgba(201,163,95,.5);border-bottom:0;border-radius:999px 999px 0 0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(var(--glow),.2),transparent 70%);transition:background 1s}
+.floor{position:absolute;left:50%;bottom:10px;width:62%;height:38px;transform:translateX(-50%);border-radius:50%;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(var(--glow),.55),transparent 70%);filter:blur(10px)}
+.ring{position:absolute;inset:0;transform-style:preserve-3d;outline:none}
+.card{position:absolute;left:50%;top:50%;width:var(--cw);height:var(--ch);margin:calc(var(--ch)/-2) 0 0 calc(var(--cw)/-2);
+  border-radius:18px;container-type:inline-size;will-change:transform,opacity;transition:box-shadow .6s;box-shadow:0 20px 50px -20px #000}
+.card.active{box-shadow:0 0 0 1px rgba(var(--glow),.6),0 0 70px rgba(var(--glow),.4),0 40px 80px -30px #000}
+.cv{position:absolute;inset:0;border-radius:inherit;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:7cqw 7cqw 6cqw;color:var(--ink);background:linear-gradient(165deg,var(--bg1),var(--bg2));
+  border:1px solid color-mix(in srgb,var(--accent) 75%,transparent)}
+.cv::before,.invite::before{content:'';position:absolute;inset:0;opacity:.13;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23C9A35F' stroke-width='.8'%3E%3Crect x='11' y='11' width='22' height='22'/%3E%3Crect x='11' y='11' width='22' height='22' transform='rotate(45 22 22)'/%3E%3C/g%3E%3C/svg%3E")}
+.cv .bsm{font:400 7cqw 'Amiri',serif;color:var(--accent);position:relative}
+.arch{flex:1;width:80%;margin:4cqw 0;border-radius:999px 999px 10px 10px;border:1px solid var(--accent);overflow:hidden}
+.arch video,.backdrop video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .8s}
+.arch.hasvid::after{display:none}
+.c-names{font:400 16cqw/.95 var(--script);position:relative}
+.c-names i{font:italic 400 6cqw var(--serif);color:var(--accent);padding:0 1.5cqw}
+.c-title{font:500 4.2cqw var(--sans);letter-spacing:.3em;text-transform:uppercase;margin-top:3cqw;color:var(--accent);position:relative}
+.shade{position:absolute;inset:0;border-radius:inherit;background:#000;opacity:0;pointer-events:none}
 
-      <button
-        id="musicToggle"
-        class="music-toggle"
-        type="button"
-        aria-label="Play background music"
-      >
-        <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span id="musicLabel">Music</span>
-      </button>
+/* motifs */
+.motif{position:relative;overflow:hidden;background:var(--scene);background-color:var(--bg2)}
+.motif::after{content:'';position:absolute;inset:0;pointer-events:none}
+[data-motif=doors]::after{background:
+  linear-gradient(90deg,transparent calc(50% - 1px),var(--accent) calc(50% - 1px),var(--accent) calc(50% + 1px),transparent calc(50% + 1px)),
+  repeating-linear-gradient(0deg,transparent 0 24%,color-mix(in srgb,var(--accent) 50%,transparent) 24% calc(24% + 1px))}
+[data-motif=arch]::after{background:
+  radial-gradient(ellipse 50% 60% at 50% 100%,transparent 96%,color-mix(in srgb,var(--accent) 70%,transparent) 98%,transparent 100%),
+  radial-gradient(ellipse 36% 44% at 50% 100%,transparent 96%,color-mix(in srgb,var(--accent) 70%,transparent) 98%,transparent 100%),
+  radial-gradient(ellipse 22% 28% at 50% 100%,transparent 96%,color-mix(in srgb,var(--accent) 70%,transparent) 98%,transparent 100%)}
+[data-motif=silk]::after{background:linear-gradient(115deg,transparent 28%,rgba(255,255,255,.55) 46%,transparent 62%),linear-gradient(70deg,transparent 40%,rgba(255,255,255,.3) 55%,transparent 70%)}
+[data-motif=garden]::after{background:radial-gradient(circle,color-mix(in srgb,var(--accent) 55%,transparent) 0 1.5px,transparent 2.5px) 0 0/18px 18px,
+  radial-gradient(circle at 50% 100%,transparent 55%,color-mix(in srgb,var(--accent) 45%,transparent) 56%,transparent 58%)}
+[data-motif=night]::after{background:
+  radial-gradient(circle at 74% 20%,#f3e3b0 0 8%,transparent 8.6%),radial-gradient(circle at 79% 17%,#0b1c44 0 7%,transparent 7.6%),
+  radial-gradient(1.6px 1.6px at 18% 22%,#fff,transparent),radial-gradient(1.2px 1.2px at 40% 12%,#fff,transparent),
+  radial-gradient(1.6px 1.6px at 28% 48%,#fff,transparent),radial-gradient(1.2px 1.2px at 62% 40%,#fff,transparent),
+  radial-gradient(1.4px 1.4px at 84% 55%,#fff,transparent),radial-gradient(1.2px 1.2px at 50% 70%,#fff,transparent),
+  radial-gradient(ellipse 30% 40% at 50% 100%,#02040f 98%,transparent 100%)}
+[data-motif=rose]::after{background:radial-gradient(circle at 30% 72%,rgba(255,255,255,.55) 0 9%,transparent 10%),
+  radial-gradient(circle at 68% 42%,rgba(255,235,235,.5) 0 13%,transparent 14%),radial-gradient(circle at 45% 25%,rgba(255,255,255,.4) 0 6%,transparent 7%)}
+[data-motif=zellige]::after{background:
+  conic-gradient(from 45deg at 50% 50%,color-mix(in srgb,var(--accent) 38%,transparent) 0 25%,transparent 0 50%,color-mix(in srgb,var(--accent) 38%,transparent) 0 75%,transparent 0) 0 0/22px 22px,
+  radial-gradient(ellipse 46% 56% at 50% 100%,transparent 96%,var(--accent) 98%,transparent 100%)}
+[data-motif=iwan]::after{background:repeating-radial-gradient(ellipse at 50% 100%,transparent 0 9px,color-mix(in srgb,var(--accent) 60%,transparent) 9px 10px)}
+[data-motif=deco]::after{background:
+  repeating-conic-gradient(from -90deg at 50% 100%,color-mix(in srgb,var(--accent) 45%,transparent) 0 1.5deg,transparent 1.5deg 9deg),
+  radial-gradient(ellipse 60% 40% at 50% 100%,var(--bg2) 40%,transparent 100%)}
+[data-motif=haveli]::after{background:
+  radial-gradient(circle at 50% 58%,#ffd9a0 0 15%,transparent 16%),
+  radial-gradient(ellipse 15% 22% at 18% 100%,#2b0d05 98%,transparent 100%),
+  radial-gradient(ellipse 20% 30% at 50% 100%,#2b0d05 98%,transparent 100%),
+  radial-gradient(ellipse 15% 22% at 82% 100%,#2b0d05 98%,transparent 100%)}
 
-      <!-- Opening / hero -->
-      <section
-        id="hero"
-        class="hero is-closed"
-        role="button"
-        tabindex="0"
-        aria-label="Tap to open the wedding invitation"
-      >
-        <video id="introVideo" class="hero-video" muted playsinline preload="metadata">
-          <source id="introVideoSource" type="video/mp4" />
-        </video>
+/* controls */
+.controls{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:8px}
+.arrow{width:46px;height:46px;border-radius:50%;border:1px solid rgba(201,163,95,.5);display:grid;place-items:center;font-size:22px;color:var(--gold);
+  background:rgba(255,255,255,.03);backdrop-filter:blur(8px);transition:.3s}
+.arrow:hover{background:var(--gold);color:#2a1305;box-shadow:0 0 30px rgba(201,163,95,.5)}
+.dial{position:relative;width:112px;height:112px;border-radius:50%;border:1px solid rgba(201,163,95,.35);background:radial-gradient(circle,rgba(201,163,95,.1),transparent 70%)}
+.dial .dot{position:absolute;left:50%;top:50%;width:13px;height:13px;margin:-6.5px;border-radius:50%;
+  transform:rotate(var(--a)) translateY(-46px);border:1px solid rgba(241,227,206,.5);transition:.4s}
+.dial .dot.on{background:var(--gold);border-color:var(--gold);box-shadow:0 0 14px var(--gold)}
+.dial .hand{position:absolute;left:50%;top:50%;width:1px;height:34px;margin-left:-.5px;transform-origin:50% 0;
+  background:linear-gradient(var(--gold),transparent);transform:rotate(calc(var(--ang,0deg) + 180deg));transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.dial .num{position:absolute;inset:0;display:grid;place-items:center;font:500 22px var(--serif);pointer-events:none}
+.dial .num small{font-size:11px;opacity:.55}
 
-        <div class="hero-veil"></div>
+/* info */
+.info{max-width:560px;margin:14px auto 0;min-height:150px}
+.info.in{animation:fadeUp .7s both}
+.info h2{font:500 clamp(26px,2.6vw,38px) var(--serif)}
+.info .who{font:400 32px var(--script);color:var(--gold);margin:2px 0 6px}
+.info .desc{font-size:14px;line-height:1.7;opacity:.75}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 10px}
+.chips span{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;padding:6px 12px;border-radius:99px;border:1px solid rgba(201,163,95,.4);background:rgba(255,255,255,.04);backdrop-filter:blur(6px)}
+.pal{display:flex;gap:8px;justify-content:center;margin-bottom:6px}
+.pal i{width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,.35)}
 
-        <div id="openingMark" class="opening-mark">
+.btn-gold{position:relative;overflow:hidden;display:inline-block;padding:15px 34px;border-radius:99px;font:600 12px var(--sans);letter-spacing:.26em;text-transform:uppercase;text-decoration:none;color:#2a1305;
+  background:linear-gradient(135deg,#f0d9a6,#C9A35F 50%,#a67f36);box-shadow:0 10px 40px -10px rgba(201,163,95,.7),inset 0 1px 0 rgba(255,255,255,.6);transition:.3s}
+.btn-gold::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transition:left .7s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 50px -8px rgba(201,163,95,.9),inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-gold:hover::after{left:130%}
 
-          <span class="opening-label"></span>
-          <span class="opening-ripple"></span>
-        </div>
+/* ───────── Stage (phone) ───────── */
+.stage{position:relative;display:grid;justify-items:center;align-content:center;gap:12px;min-width:0}
+.frame{position:relative;display:grid;place-items:center;padding:2vh 0;perspective:1800px}
+.halo{position:absolute;width:calc(var(--ph)*.95);height:calc(var(--ph)*.95);border-radius:50%;
+  background:radial-gradient(circle,rgba(var(--glow),.5),transparent 66%);filter:blur(50px);transition:background 1s}
+.star{position:absolute;width:calc(var(--ph)*1.08);height:calc(var(--ph)*1.08);opacity:.5;animation:spin 90s linear infinite;pointer-events:none}
+.star.b{width:calc(var(--ph)*.9);height:calc(var(--ph)*.9);animation-duration:140s;animation-direction:reverse;opacity:.3}
+@keyframes spin{to{transform:rotate(360deg)}}
+.phone{position:relative;height:var(--ph);width:calc(var(--ph)*.485);border-radius:48px;padding:11px;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s ease-out;
+  background:linear-gradient(145deg,#ecd49f,#8a6a2c 38%,#e0c183 68%,#6b4f1d);
+  box-shadow:0 50px 100px -30px #000,0 0 0 1px rgba(255,235,190,.4),0 0 80px rgba(var(--glow),.25)}
+.phone.pulse{animation:pulse .9s}
+@keyframes pulse{40%{box-shadow:0 50px 100px -30px #000,0 0 0 2px #fff3cf,0 0 140px rgba(var(--glow),.8)}}
+.notch{position:absolute;top:19px;left:50%;width:30%;height:22px;margin-left:-15%;background:#0a0405;border-radius:99px;z-index:19}
+.bar{position:absolute;top:24px;right:24px;display:flex;gap:8px;z-index:20}
+.bar button{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:15px;
+  background:rgba(18,4,6,.55);backdrop-filter:blur(10px);border:1px solid rgba(201,163,95,.55);color:var(--ivory)}
+#close{display:none}
+.eq{display:flex;gap:2px;align-items:flex-end;height:14px}
+.eq i{width:3px;height:4px;background:var(--gold);border-radius:2px}
+#sound.on .eq i{animation:eq 1s ease-in-out infinite}
+#sound.on .eq i:nth-child(2){animation-delay:.2s}#sound.on .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{50%{height:14px}}
+.hint{font:500 11px var(--sans);letter-spacing:.26em;text-transform:uppercase;color:var(--gold);padding:9px 18px;border-radius:99px;border:1px solid var(--line);
+  background:rgba(255,255,255,.04);backdrop-filter:blur(8px);transition:.4s}
+.hint .b{display:none}.stage.opened .hint .a{display:none}.stage.opened .hint .b{display:inline}
 
-        <div class="hero-content">
-          <p class="bismillah" lang="ar" data-bind="copy.bismillah"></p>
-          <p class="translation" data-bind="copy.bismillahTranslation"></p>
+/* intro switcher */
+.switcher{display:none;gap:2px;padding:4px;border-radius:99px;z-index:70;
+  background:rgba(18,4,6,.6);backdrop-filter:blur(14px);border:1px solid rgba(201,163,95,.55);box-shadow:0 10px 30px -10px #000}
+.switcher.show{display:flex}
+.switcher button{display:flex;align-items:center;padding:8px 11px;border-radius:99px;font:600 10.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);transition:.4s}
+.switcher button span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .5s,margin .5s}
+.switcher button.on{background:linear-gradient(135deg,#f0d9a6,#C9A35F 50%,#a67f36);color:#2a1305}
+.switcher button.on span{max-width:130px;margin-left:6px}
 
-          <div class="hero-divider"><span>✦</span></div>
-          <p class="hero-welcome" data-bind="copy.welcomeLine"></p>
+.screen{position:relative;width:100%;height:100%;border-radius:38px;overflow:hidden;background:var(--bg2);container-type:inline-size;isolation:isolate}
 
-          <div class="couple-names">
-            <div>
-              <h1 id="brideName"></h1>
-              <p data-bind="couple.bride.relation"></p>
-              <small data-bind="couple.bride.parents"></small>
-            </div>
+/* cover */
+.cover{--k:1;--door:3200ms;position:absolute;inset:0;z-index:10;perspective:1400px;overflow:hidden}
+.cover.gone{display:none}
+.cover.opening{cursor:pointer}
+.backdrop{position:absolute;inset:0;overflow:hidden;
+  background:radial-gradient(circle at 50% 46%,color-mix(in srgb,var(--accent) 65%,transparent),transparent 62%),radial-gradient(circle at 50% 20%,#fff3,transparent 40%),var(--bg2)}
+.cover.has-video .panel{display:none}
+.panel{position:absolute;top:0;bottom:0;width:50.3%;background:var(--scene);background-color:var(--bg1);
+  transition:transform var(--door) cubic-bezier(.55,.05,.2,1) .15s;backface-visibility:hidden;box-shadow:inset 0 0 0 1px var(--accent),inset 0 0 60px rgba(0,0,0,.35)}
+.cover.skip .panel{transition-duration:.45s;transition-delay:0s}
+.panel.l{left:0;transform-origin:0 50%}.panel.r{right:0;transform-origin:100% 50%}
+.panel::before{content:'';position:absolute;inset:5% 8%;border:1px solid var(--accent);border-radius:6cqw 6cqw 1cqw 1cqw;opacity:.8}
+.panel::after{content:'';position:absolute;top:50%;width:5.5cqw;height:5.5cqw;border-radius:50%;margin-top:-2.7cqw;
+  background:radial-gradient(circle at 35% 30%,#fff3cf,var(--accent) 60%,#5c4416);box-shadow:0 0 12px var(--accent)}
+.panel.l::after{right:3cqw}.panel.r::after{left:3cqw}
+.cover.opening .panel.l{transform:rotateY(-104deg)}.cover.opening .panel.r{transform:rotateY(104deg)}
+[data-mode=part] .cover.opening .panel.l{transform:translateX(-102%)}
+[data-mode=part] .cover.opening .panel.r{transform:translateX(102%)}
+.cover-center{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:0 9cqw;color:var(--ink);text-shadow:0 2px 20px color-mix(in srgb,var(--bg2) 80%,transparent);transition:opacity .35s}
+.cover.opening .cover-center{opacity:0;pointer-events:none}
+.bsm{font:400 8cqw/1.6 'Amiri',serif;color:var(--accent)}
+.small{font:500 2.9cqw var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin:3cqw 0}
+.names{font:400 21cqw/.9 var(--script);margin:2cqw 0}
+.names span{display:block;font:italic 400 6.5cqw var(--serif);color:var(--accent);margin:1cqw 0}
+.seal{position:relative;width:26cqw;height:26cqw;margin-top:8cqw;border-radius:50%;display:grid;place-items:center;
+  font:400 9cqw var(--script);color:var(--accent-ink);text-shadow:none;
+  background:radial-gradient(circle at 35% 30%,#fff3cf,var(--accent) 45%,#5c4416 100%);
+  box-shadow:0 0 0 1.2cqw color-mix(in srgb,var(--accent) 35%,transparent),0 3cqw 8cqw -2cqw #000,inset 0 0 0 1cqw rgba(0,0,0,.12);
+  animation:glowp 2.4s ease-in-out infinite;transition:transform .45s ease,opacity .35s}
+.seal::before,.seal::after{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid var(--accent);animation:sealhalo 2.4s ease-out infinite}
+.seal::after{animation-delay:1.2s}
+@keyframes sealhalo{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.9);opacity:0}}
+@keyframes glowp{50%{box-shadow:0 0 6cqw color-mix(in srgb,var(--accent) 80%,transparent)}}
+.cover.opening .seal{transform:scale(.4);opacity:0}
+.tap{font:600 3cqw var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-top:4cqw}
+.veil{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:0;transition:opacity calc(.9s*var(--k)) ease;
+  background:radial-gradient(ellipse at 50% 46%,color-mix(in srgb,var(--bg2) 20%,transparent) 0%,color-mix(in srgb,var(--bg2) 90%,#000) 100%)}
+.cover.veil-on .veil{opacity:1}
+.cover.fade{opacity:0;pointer-events:none;transition:opacity calc(1.2s*var(--k)) ease}
 
-            <span class="name-ampersand">&amp;</span>
+/* invitation */
+.invite{position:absolute;inset:0;overflow-y:hidden;overflow-x:hidden;color:var(--ink);scrollbar-width:none;scroll-behavior:smooth;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2) 55%,var(--bg1))}
+.invite.unlocked{overflow-y:auto}
+.invite::-webkit-scrollbar{display:none}
+.invite>*{position:relative}
+.sec{padding:15cqw 8cqw;text-align:center}
+.sec.hero{min-height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;transform:translateY(6cqw) scale(.96)}
+.invite.armed .hero{opacity:1;transform:none;transition:opacity 1.5s ease,transform 1.9s cubic-bezier(.2,.7,.2,1)}
+.sec h3{font:italic 500 8cqw var(--serif);margin:3cqw 0 5cqw}
+.rv{opacity:0;transform:translateY(7cqw);transition:opacity 1s,transform 1s cubic-bezier(.2,.7,.2,1)}
+.invite.armed .rv.in{opacity:1;transform:none}
+.hero .rv:nth-child(2){transition-delay:.15s}.hero .rv:nth-child(3){transition-delay:.3s}.hero .rv:nth-child(4){transition-delay:.45s}
+.hero .rv:nth-child(5){transition-delay:.6s}.hero .rv:nth-child(6){transition-delay:.75s}
+.orn{display:flex;align-items:center;gap:3cqw;justify-content:center;color:var(--accent);margin:5cqw 0}
+.orn::before,.orn::after{content:'';height:1px;width:18cqw;background:linear-gradient(90deg,transparent,var(--accent))}
+.orn::after{transform:scaleX(-1)}
+.ayah{font:400 7cqw/1.9 'Amiri',serif;direction:rtl;color:var(--accent)}
+.trans{font:italic 400 4.6cqw/1.7 var(--serif);opacity:.9;margin-top:4cqw}
+.ref{font:500 2.6cqw var(--sans);letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-top:3cqw}
+.parents{font:italic 400 3.8cqw/1.7 var(--serif);opacity:.85;margin-top:5cqw}
+.parents b{font-style:normal;font-weight:600;color:var(--accent)}
+.cue{position:absolute;left:0;right:0;bottom:7cqw;z-index:8;text-align:center;pointer-events:none;opacity:0;transition:opacity 1s}
+.screen.cue-on .cue{opacity:1}.screen.cue-on.scrolled .cue{opacity:0}
+.cue i{display:block;position:relative;width:6cqw;height:10cqw;margin:0 auto 2cqw;border:1px solid var(--accent);border-radius:99px}
+.cue i::after{content:'';position:absolute;left:50%;top:2cqw;width:1cqw;height:2cqw;margin-left:-.5cqw;border-radius:2px;background:var(--accent);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(3.6cqw)}}
+.cue span{font:500 2.6cqw var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
 
-            <div>
-              <h1 id="groomName"></h1>
-              <p data-bind="couple.groom.relation"></p>
-              <small data-bind="couple.groom.parents"></small>
-            </div>
-          </div>
+.scratch{position:relative;width:76cqw;height:44cqw;margin:6cqw auto 0;border-radius:4cqw;overflow:hidden;border:1px solid var(--accent);
+  background:color-mix(in srgb,var(--accent) 12%,transparent);box-shadow:0 0 8cqw color-mix(in srgb,var(--accent) 25%,transparent)}
+.scratch .date{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.scratch .date small{font:500 2.8cqw var(--sans);letter-spacing:.35em;text-transform:uppercase;color:var(--accent)}
+.scratch .date b{font:500 17cqw/1 var(--serif)}
+.scratch .date span{font:italic 5cqw var(--serif)}
+.scratch canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;transition:opacity 1.2s;cursor:crosshair}
+.scratch.done canvas{opacity:0;pointer-events:none}
+.scratch.done{animation:glowp 2s 2}
+.note{font-size:3cqw;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-top:4cqw}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5cqw;margin-top:4cqw}
+.cd div{padding:4cqw 0;border:1px solid color-mix(in srgb,var(--accent) 60%,transparent);border-radius:3cqw;background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.cd b{display:block;font:500 9cqw/1 var(--serif);color:var(--accent)}
+.cd small{font-size:2.4cqw;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+.tl{position:relative;text-align:left;margin-top:5cqw;padding-left:9cqw}
+.tl::before{content:'';position:absolute;left:2.5cqw;top:1cqw;bottom:1cqw;width:1px;background:linear-gradient(var(--accent),transparent)}
+.tl li{list-style:none;position:relative;margin-bottom:7cqw}
+.tl li::before{content:'';position:absolute;left:-8.3cqw;top:1.4cqw;width:3.2cqw;height:3.2cqw;transform:rotate(45deg);background:var(--accent);box-shadow:0 0 3cqw var(--accent)}
+.tl time{font:600 2.8cqw var(--sans);letter-spacing:.25em;text-transform:uppercase;color:var(--accent)}
+.tl h4{font:500 6cqw var(--serif);margin:1cqw 0}.tl p{font-size:3.4cqw;opacity:.75;line-height:1.6}
+.fn{display:grid;gap:3cqw;margin-top:4cqw}
+.fn div{padding:5cqw;border-radius:3cqw;border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.fn h4{font:500 6.4cqw var(--serif)}.fn time{display:block;font:600 2.8cqw var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:1.5cqw 0}
+.fn p{font-size:3.3cqw;opacity:.75}
+.ghost{display:inline-block;margin-top:5cqw;padding:3.6cqw 8cqw;border-radius:99px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;
+  font:600 3cqw var(--sans);letter-spacing:.24em;text-transform:uppercase;transition:.3s}
+.ghost:hover{background:var(--accent);color:var(--accent-ink)}
+.venue{font:500 7cqw var(--serif)}.venue-c{font-size:3.4cqw;opacity:.7;letter-spacing:.15em;text-transform:uppercase;margin-top:1cqw}
+.sw{display:flex;justify-content:center;gap:4cqw;margin-top:5cqw;flex-wrap:wrap}
+.sw div{text-align:center;font-size:2.7cqw;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+.sw i{display:block;width:15cqw;height:15cqw;border-radius:50%;margin:0 auto 2cqw;border:2px solid color-mix(in srgb,var(--accent) 70%,transparent);box-shadow:0 2cqw 5cqw -2cqw #000}
+.foot{padding:12cqw 8cqw 18cqw;text-align:center;opacity:.7;font:italic 4cqw var(--serif)}
+.foot b{display:block;font:400 11cqw var(--script);color:var(--accent);margin-bottom:2cqw}
 
-          <p class="hero-invitation" data-bind="copy.invitation"></p>
-          <p class="hero-closing" data-bind="copy.heroClosing"></p>
+/* ───────── Below the fold ───────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--d,0s),transform .9s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.marquee{position:relative;z-index:2;overflow:hidden;border-block:1px solid var(--line);padding:14px 0;background:rgba(0,0,0,.3);backdrop-filter:blur(6px)}
+.mq{display:flex;width:max-content;animation:mq 45s linear infinite}
+.mq span{font:400 38px/1.2 var(--script);color:var(--gold);padding:0 30px;white-space:nowrap}
+.mq span::after{content:'✦';font:12px var(--sans);margin-left:60px;opacity:.6}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sect{position:relative;z-index:2;padding:clamp(70px,10vw,140px) 4vw}
+.sect-head{max-width:760px;margin:0 auto 56px;text-align:center}
+.sect-head h2{font:500 clamp(34px,5vw,68px)/1.02 var(--serif)}
+.sect-head h2 em{font:400 1.25em/.8 var(--script);color:var(--gold)}
+.sect-head p{opacity:.68;line-height:1.7;margin-top:16px}
+.steps,.bento,.grid{max-width:1150px;margin:auto;display:grid;gap:18px}
+.steps{grid-template-columns:repeat(3,1fr)}
+.step,.bt{position:relative;overflow:hidden;padding:32px 28px;border:1px solid var(--line);border-radius:22px;transition:.45s;
+  background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01));backdrop-filter:blur(10px)}
+.step b{font:400 76px/1 var(--script);color:var(--gold)}
+.step h3,.bt h3{font:500 27px var(--serif);margin:8px 0}
+.step p,.bt p{opacity:.68;line-height:1.7;font-size:14px}
+.bento{grid-template-columns:repeat(3,1fr)}
+.bt:hover,.step:hover{transform:translateY(-5px);border-color:rgba(201,163,95,.7);box-shadow:0 30px 60px -30px rgba(201,163,95,.4)}
+.bt svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.grid{max-width:1250px;grid-template-columns:repeat(5,1fr)}
+.tile{display:block;text-align:center}
+.tile .art{aspect-ratio:3/4.3;border-radius:999px 999px 14px 14px;border:1px solid color-mix(in srgb,var(--accent) 70%,transparent);transition:.5s;color:var(--ink)}
+.tile:hover .art{transform:translateY(-8px);box-shadow:0 30px 60px -20px rgba(var(--glow),.55)}
+.tile .tn{position:absolute;z-index:2;left:0;right:0;bottom:13%;font:400 clamp(28px,3vw,40px)/.95 var(--script)}
+.tile .tn i{display:block;font:italic 400 15px var(--serif);color:var(--accent);margin:2px 0}
+.tile .tt{display:block;margin-top:14px;font:500 11px var(--sans);letter-spacing:.22em;text-transform:uppercase;opacity:.8}
+.cta{max-width:900px;margin:auto;text-align:center;padding:clamp(40px,7vw,80px) 28px;border:1px solid var(--line);border-radius:36px;
+  background:radial-gradient(ellipse at 50% 0,rgba(var(--glow),.28),transparent 70%),rgba(255,255,255,.03);backdrop-filter:blur(12px)}
+.cta h2{font:500 clamp(34px,5vw,64px)/1.02 var(--serif);margin-bottom:14px}
+.cta h2 em{font:400 1.25em/.8 var(--script);color:var(--gold)}
+.cta p{opacity:.7;max-width:480px;margin:0 auto 28px;line-height:1.7}
+footer{position:relative;z-index:2;text-align:center;padding:40px 4vw 50px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.7}
+footer .brand{display:inline-block;margin-bottom:8px}
 
-          <a class="scroll-cue" href="#welcome">
-            <span>Scroll</span>
-            <i aria-hidden="true"></i>
-          </a>
-        </div>
-      </section>
-      
-      <div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
+.toast{position:fixed;left:50%;bottom:28px;z-index:120;transform:translate(-50%,20px);opacity:0;pointer-events:none;transition:.5s;
+  padding:13px 24px;border-radius:99px;background:rgba(18,4,6,.85);backdrop-filter:blur(12px);border:1px solid rgba(201,163,95,.6);
+  font:500 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
 
-      <!-- Welcome -->
-      <section id="welcome" class="welcome-section section-pad">
-        <div class="section-shell welcome-shell">
-          <div class="welcome-copy reveal">
-            <h2 data-bind="copy.welcomeTitle"></h2>
-            <p data-bind="copy.welcomeBody"></p>
-            <div id="welcomeSignature" class="signature"></div>
-          </div>
-        </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Scratch-to-reveal date -->
-      <section id="date" class="scratch-section section-pad">
-        <div class="section-shell">
-          <header class="section-heading reveal">
-            <span class="eyebrow">A date to hold close</span>
-            <h2 id="scratchHeading">Scratch to Reveal</h2>
-            <span class="ornament" aria-hidden="true"><i></i></span>
-          </header>
+/* ───────── Responsive ───────── */
+@media (max-width:959px){
+  .nav a:not(.pill){display:none}
+  .brand{font-size:30px}
+  .studio{grid-template-columns:1fr;padding:74px 16px 28px;min-height:auto}
+  .selector h1{font-size:34px}
+  .pills{display:flex}
+  .dial{display:none}
+  .ring-wrap{--cw:196px;--ch:322px}
+  .controls{gap:40px}
+  .info{min-height:0}
+  .info .desc{font-size:13px}
+  .stage{position:fixed;inset:0;z-index:60;display:block;transform:translateY(105%);transition:transform .8s cubic-bezier(.2,.8,.2,1);background:#120204}
+  body.phone-open .stage{transform:none}
+  .frame{width:100%;height:100dvh;padding:0}
+  .halo,.star,.notch,.hint{display:none}
+  .phone{width:100%;height:100dvh;padding:0;border-radius:0;background:none;box-shadow:none;transform:none!important}
+  .screen{border-radius:0}
+  .bar{top:max(14px,env(safe-area-inset-top));right:14px}
+  #close{display:grid}
+  .switcher{position:absolute;top:max(14px,env(safe-area-inset-top));left:14px}
+  .steps{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:560px){.bento{grid-template-columns:1fr}}
+@media (min-width:960px) and (max-height:820px){:root{--ph:min(640px,76vh)}.ring-wrap{--cw:200px;--ch:330px}.info .desc,.lede{display:none}.info{min-height:0}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.phone{transform:none!important}}
+</style>
+</head>
 
-<div class="scratch-frame-shell reveal">
-  <img
-    src="./assets/images/scratch-frame.webp"
-    alt=""
-    class="scratch-frame-overlay"
-    aria-hidden="true"
-  />
+<body>
+<div class="splash" id="splash"><div><div class="sp-b">Nikah</div><div class="sp-l"></div><div class="sp-s">Cards</div></div></div>
 
-  <div id="scratchCard" class="scratch-wrap">
-    <div class="date-reveal" aria-live="polite">
-      <span class="date-kicker">You’re Invited!</span>
-      <strong class="date-main" data-bind="wedding.date"></strong>
-<div class="date-day">
-  <span data-bind="wedding.day"></span>
-  <a aria-hidden="true">⬩</a>
-  <span data-bind="wedding.time"></span>
-</div>
+<div id="ambients"></div>
+<canvas id="dust"></canvas>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<header class="top" id="top">
+  <a class="brand" href="#">Nikah<b>Cards</b></a>
+  <nav class="nav" aria-label="Main">
+    <a href="#how">How it works</a>
+    <a href="#features">Experience</a>
+    <a href="#collection">Collection</a>
+    <a class="pill" href="#contact">Create yours</a>
+  </nav>
+</header>
+
+<main>
+<div class="studio">
+  <!-- LEFT: circle-shift selector -->
+  <section class="selector" aria-label="Choose an invitation design">
+    <p class="eyebrow rise" id="eyebrow" style="--d:0">The Collection</p>
+    <h1 class="rise" style="--d:.1">Invitations worth <br>the <em>entrance</em></h1>
+    <p class="lede rise" style="--d:.2">Drag through the collection, choose your design, then tap the seal and watch the doors open.</p>
+    <div class="pills" id="pills"></div>
+
+    <div class="ring-wrap rise" id="ringWrap" style="--d:.3">
+      <div class="floor"></div>
+      <div class="ring" id="ring" tabindex="0" role="listbox" aria-roledescription="3D carousel" aria-label="Invitation designs"></div>
     </div>
 
-    <canvas
-      id="scratchCanvas"
-      class="scratch-canvas"
-      role="button"
-      tabindex="0"
-      aria-label="Scratch to reveal the wedding date. Press Enter to reveal."
-    ></canvas>
-  </div>
-</div>
+    <div class="controls rise" style="--d:.45">
+      <button class="arrow" id="prev" aria-label="Previous design">‹</button>
+      <div class="dial" id="dial"></div>
+      <button class="arrow" id="next" aria-label="Next design">›</button>
+    </div>
 
-          <p id="scratchNote" class="scratch-note reveal">
-            Use your finger or cursor to uncover the moment.
-          </p>
+    <div class="info" id="info" aria-live="polite"></div>
+    <button class="btn-gold rise" id="selectBtn" style="--d:.6">Select &amp; Preview</button>
+  </section>
+
+  <!-- RIGHT: live stage -->
+  <section class="stage" id="stage" aria-label="Live invitation preview">
+    <div class="switcher" id="switcher" role="tablist" aria-label="Intro style"></div>
+    <div class="frame rise" style="--d:.35">
+      <div class="halo"></div>
+      <svg class="star" viewBox="0 0 200 200" fill="none" stroke="#C9A35F" stroke-width=".4" aria-hidden="true"><g id="starA"></g></svg>
+      <svg class="star b" viewBox="0 0 200 200" fill="none" stroke="#C9A35F" stroke-width=".4" aria-hidden="true"><g id="starB"></g></svg>
+      <div class="phone" id="phone">
+        <div class="notch"></div>
+        <div class="bar">
+          <button id="sound" aria-label="Toggle music"><span class="eq"><i></i><i></i><i></i></span></button>
+          <button id="replay" aria-label="Replay entrance">↺</button>
+          <button id="close" aria-label="Close preview">✕</button>
         </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Gallery -->
-      <section class="gallery-section section-pad" aria-label="Gallery">
-        <div class="section-shell">
-          <header class="section-heading reveal">
-            <span class="eyebrow">Our story</span>
-            <h2>Moments, softly held</h2>
-            <span class="ornament" aria-hidden="true"><i></i></span>
-          </header>
-
-          <div id="galleryFrame" class="gallery-frame reveal">
-            <div id="gallerySlides"></div>
-            <span class="gallery-corner gallery-corner-a" aria-hidden="true"></span>
-            <span class="gallery-corner gallery-corner-b" aria-hidden="true"></span>
-          </div>
-
-          <div id="galleryDots" class="gallery-dots reveal" aria-label="Choose gallery image"></div>
-        </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Countdown -->
-      <section class="countdown-section section-pad">
-        <div class="section-shell countdown-shell">
-          <header class="section-heading reveal">
-            <span class="eyebrow">Until we say Qubool Hai</span>
-            <h2>Counting every heartbeat</h2>
-            <span class="ornament" aria-hidden="true"><i></i></span>
-          </header>
-
-          <div class="countdown reveal" aria-label="Wedding countdown">
-            <div><strong id="countdownDays">00</strong><span>days</span></div>
-            <div><strong id="countdownHours">00</strong><span>hours</span></div>
-            <div><strong id="countdownMinutes">00</strong><span>minutes</span></div>
-            <div><strong id="countdownSeconds">00</strong><span>seconds</span></div>
-          </div>
-        </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Program -->
-      <section class="program-section section-pad">
-        <div class="section-shell program-shell">
-          <header class="section-heading reveal">
-            <span class="eyebrow">The celebration</span>
-            <h2>Our Nikah day</h2>
-            <span class="ornament" aria-hidden="true"><i></i></span>
-          </header>
-
-          <div id="programTimeline" class="timeline reveal"></div>
-        </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-<!-- Venue -->
-<section class="venue-section section-pad">
-  <div class="section-shell">
-    <div class="venue-card reveal">
-
-      <span class="eyebrow">The venue</span>
-
-      <div class="venue-divider" aria-hidden="true">
-        <span>✦</span>
+        <div class="screen" id="screen"></div>
       </div>
-
-      <h2 data-bind="venue.name"></h2>
-
-      <p data-bind="venue.address"></p>
-
-      <a
-        id="mapLink"
-        class="venue-map-button"
-        target="_blank"
-        rel="noreferrer"
-      >
-        View on Google Maps
-      </a>
-
     </div>
+    <p class="hint"><span class="a">✦ Tap the gold seal to open</span><span class="b">Scroll inside the phone to explore</span></p>
+  </section>
+</div>
+
+<div class="marquee" aria-hidden="true"><div class="mq" id="mq"></div></div>
+
+<section class="sect" id="how">
+  <div class="sect-head reveal"><p class="eyebrow">How it works</p><h2>Three steps to your <em>grand entrance</em></h2></div>
+  <div class="steps">
+    <div class="step reveal"><b>01</b><h3>Choose your world</h3><p>Pick from ten handcrafted themes, from palace doors and marble archways to Persian iwans and midnight sapphire.</p></div>
+    <div class="step reveal" style="--d:.12s"><b>02</b><h3>We tailor every detail</h3><p>Names, dates, venues, duas, dress code and music, composed into one cinematic invitation.</p></div>
+    <div class="step reveal" style="--d:.24s"><b>03</b><h3>Share a single link</h3><p>Guests tap the seal, doors open, music begins.</p></div>
   </div>
 </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Dress code -->
-      <section class="dress-section section-pad">
-        <div class="section-shell dress-shell">
-          <div class="dress-copy reveal">
-            <span class="eyebrow">Dress code</span>
-            <h2 data-bind="dressCode.title"></h2>
-            <p data-bind="dressCode.description"></p>
-          </div>
 
-          <div id="dressPalette" class="palette reveal" aria-label="Suggested colour palette"></div>
-        </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Pre-wedding events -->
-      <section class="events-section section-pad">
-        <div class="section-shell">
-          <header class="section-heading reveal">
-            <span class="eyebrow">The Festivities</span>
-            <h2>Days filled with joy</h2>
-            <span class="ornament" aria-hidden="true"><i></i></span>
-          </header>
+<section class="sect" id="features">
+  <div class="sect-head reveal"><p class="eyebrow">The experience</p><h2>Everything a guest <em>feels</em></h2><p>Every invitation includes the full ceremony, not just a pretty cover.</p></div>
+  <div class="bento">
+    <div class="bt reveal"><svg viewBox="0 0 24 24"><path d="M5 21V9a7 7 0 0114 0v12M3 21h18M12 12v9"/></svg><h3>Cinematic door intro</h3><p>A real video of doors opening, synced to music, then your card glides into view.</p></div>
+    <div class="bt reveal" style="--d:.1s"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><h3>Scratch to reveal</h3><p>A tactile gold-foil card guests rub away to uncover the sacred date.</p></div>
+    <div class="bt reveal" style="--d:.2s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Live countdown</h3><p>Days, hours, minutes and seconds ticking toward your Nikah.</p></div>
+    <div class="bt reveal"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><h3>One-tap venue maps</h3><p>Guests open directions to the venue in Google Maps instantly.</p></div>
+    <div class="bt reveal" style="--d:.1s"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg><h3>Multi-event itinerary</h3><p>Curated timelines for Mehendi, Qawwali, Nikah and Walima ceremonies.</p></div>
+    <div class="bt reveal" style="--d:.2s"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><h3>Sufi &amp; nazm music</h3><p>Your chosen soundtrack begins the moment the seal is tapped.</p></div>
+  </div>
+</section>
 
-          <div id="preWeddingEvents" class="event-list reveal"></div>
-        </div>
-      </section>
-<div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
-      <!-- Gifts -->
-      <section class="gifts-section section-pad">
-        <div class="gift-bloom" aria-hidden="true"><i></i><i></i><i></i></div>
+<section class="sect" id="collection">
+  <div class="sect-head reveal"><p class="eyebrow">The full collection</p><h2>Ten signature <em>designs</em></h2><p>Tap any design to preview it live at the top of the page.</p></div>
+  <div class="grid" id="tiles"></div>
+</section>
 
-        <div class="gift-copy reveal">
-          <span class="eyebrow">With all our hearts</span>
-          <h2>Your presence is our present</h2>
-          <p><span data-bind="copy.gifts"></span></p>
-        </div>
-      </section>
+<section class="sect" id="contact">
+  <div class="cta reveal">
+    <p class="eyebrow">Begin</p>
+    <h2>Your Nikah deserves <br>a proper <em>entrance</em></h2>
+    <p>Tell us your names, date and venue. We will send a private preview link within days.</p>
+    <a class="btn-gold" href="https://wa.me/910000000000?text=Assalamu%20alaikum%2C%20I%27d%20like%20a%20Nikah%20Card" target="_blank" rel="noopener">Start on WhatsApp</a>
+  </div>
+</section>
+</main>
 
-      <!-- RSVP -->
-      <div class="floral-divider" aria-hidden="true">
-  <img src="./assets/images/floral-divider.webp" alt="" width="1400" height="467" loading="lazy" decoding="async">
-</div>
+<footer><a class="brand" href="#">Nikah<b>Cards</b></a><br>Bespoke Islamic digital invitations · Made with duas</footer>
+<div class="toast" id="toast" role="status"></div>
 
-      <!-- Closing -->
-      <footer class="closing-section">
-        <div class="closing-arch reveal">
-          <span class="ornament light" aria-hidden="true"><i></i></span>
-          <h2 data-bind="copy.closing"></h2>
-          <div id="closingNames" class="closing-names"></div>
-          <small id="closingDetails"></small>
-        </div>
-      </footer>
-    </main>
-  </body>
+<script>
+/* ═════════════ CONFIG ═════════════
+   MUSIC_SRC: real nazm/sufi mp3 path. '' = built-in generative ambient pad.
+   theme.video: optional intro clip (9:16). Missing files are ignored; CSS doors take over. */
+const MUSIC_SRC = './media/music-placeholder.mp3';
+
+const THEMES = [
+ { id:'palace', group:'alizeh', intro:{icon:'🏛️',label:'Palace Doors'}, parents:['Mr. & Mrs. Farooq Ahmed','Mr. & Mrs. Altaf Hussain'],
+   title:'Royal Palace Doors', couple:['Alizeh','Farhan'], motif:'doors', mode:'swing',
+   desc:'Heavy carved wooden palace doors swing open onto a grand chandelier banquet hall. Deep velvet burgundy wrapped in 24K antique gold.',
+   tags:['Mughal Velvet','Burgundy','Antique Gold'],
+   bg1:'#3A070C', bg2:'#1c0306', ink:'#F1E3CE', accent:'#C9A35F', accentInk:'#2a1305', glow:'201,163,95', amb:['#3A070C','#120204'],
+   scene:'radial-gradient(circle at 50% 30%,rgba(246,210,138,.35),transparent 55%),linear-gradient(180deg,#6a1219,#2a0509)',
+   video:'media/intro-Royal_palace_doors_opening.mp4', date:'2026-10-18T17:30:00', venue:'Hyatt Regency', city:'Chennai',
+   swatches:[['Burgundy','#6b1020'],['Forest Green','#1f4d3a'],['Gold','#C9A35F'],['Mauve','#8e6678']] },
+
+ { id:'marble', group:'alizeh', intro:{icon:'🕌',label:'Marble Archway'}, parents:['Mr. & Mrs. Farooq Ahmed','Mr. & Mrs. Altaf Hussain'],
+   title:'Grand Marble Archway', couple:['Alizeh','Farhan'], motif:'arch', mode:'part',
+   desc:'A white carved Islamic marble archway opens into a candlelit courtyard with a murmuring fountain and glowing lanterns.',
+   tags:['White Marble','Courtyard','Lanterns'],
+   bg1:'#f4efe6', bg2:'#d8cfbf', ink:'#3b2a14', accent:'#9c7633', accentInk:'#fff8e8', glow:'236,224,200', amb:['#2b2a2d','#0f0e12'],
+   scene:'radial-gradient(circle at 50% 100%,rgba(255,226,160,.7),transparent 55%),linear-gradient(180deg,#fbf8f1,#cfc5b3)',
+   video:'media/intro-Marble_archway.mp4', date:'2026-10-18T17:30:00', venue:'ITC Grand Chola', city:'Chennai',
+   swatches:[['Ivory','#f1e6d2'],['Sage','#9aa98a'],['Gold','#b98d3e'],['Dusty Rose','#c99a97']] },
+
+ { id:'ivory', title:'Royal Ivory Silk', couple:['Ayla','Daniyal'], motif:'silk', mode:'part',
+   desc:'Noor minimalist opulence: floating luminous ivory silk, 24K stardust and the Surah Ar-Rum calligraphy.',
+   tags:['Noor','Ivory Silk','Brushed Gold'],
+   bg1:'#faf4e6', bg2:'#e8dbbd', ink:'#4a3416', accent:'#a77d33', accentInk:'#fffaf0', glow:'241,227,190', amb:['#3a2f1e','#14100a'],
+   scene:'radial-gradient(circle at 50% 25%,rgba(255,255,255,.9),transparent 55%),linear-gradient(170deg,#fffaf0,#e3d3ae)',
+   video:'media/intro-ivory.mp4', date:'2026-11-14T17:00:00', venue:'The Grand Ballroom', city:'Hyderabad',
+   swatches:[['Ivory','#f5ecd7'],['Champagne','#d9c08a'],['Taupe','#9b8a73'],['Gold','#a77d33']] },
+
+ { id:'emerald', title:'Imperial Emerald', couple:['Zoya','Hamza'], motif:'garden', mode:'part',
+   desc:'A sacred Zamrud paradise garden: deep forest green with botanical gold filigree and antique-gold motifs.',
+   tags:['Zamrud Garden','Emerald','Filigree'],
+   bg1:'#0d4231', bg2:'#04180f', ink:'#f0e6c8', accent:'#d4b06a', accentInk:'#10281d', glow:'70,170,125', amb:['#06301f','#020d08'],
+   scene:'radial-gradient(circle at 50% 35%,rgba(120,220,170,.3),transparent 55%),linear-gradient(180deg,#14624a,#062a1d)',
+   video:'media/intro-emerald.mp4', date:'2026-11-28T18:00:00', venue:'The Emerald Gardens', city:'Lucknow',
+   swatches:[['Emerald','#0f5a43'],['Antique Gold','#d4b06a'],['Cream','#efe3c4'],['Olive','#6b7a3a']] },
+
+ { id:'sapphire', title:'Midnight Sapphire', couple:['Sarah','Rehan'], motif:'night', mode:'swing',
+   desc:'A celestial Arabian night: deep navy, starlight gold, glowing lantern silhouettes and arch skylines.',
+   tags:['Arabian Night','Navy','Starlight'],
+   bg1:'#0f2557', bg2:'#050b24', ink:'#ece6d4', accent:'#e0c27a', accentInk:'#0a1330', glow:'110,140,240', amb:['#0a1a45','#030614'],
+   scene:'radial-gradient(circle at 50% 20%,rgba(110,140,240,.35),transparent 55%),linear-gradient(180deg,#16347a,#060d2c)',
+   video:'media/intro-sapphire.mp4', date:'2026-12-12T19:00:00', venue:'The Starlit Terrace', city:'Dubai',
+   swatches:[['Sapphire','#14327a'],['Silver','#b9c0d4'],['Gold','#e0c27a'],['Midnight','#070d2a']] },
+
+ { id:'blush', title:'Blush Rose Luxe', couple:['Zainab','Bilal'], motif:'rose', mode:'part',
+   desc:'Romantic pastel flora with champagne pearl and a rose-gold shimmer: soft petals, softer vows.',
+   tags:['Pastel Flora','Champagne Pearl','Rose Gold'],
+   bg1:'#fbe6e3', bg2:'#ecc0bc', ink:'#5a2a30', accent:'#b76e79', accentInk:'#fff5f3', glow:'240,170,175', amb:['#4a1f2a','#150709'],
+   scene:'radial-gradient(circle at 50% 30%,rgba(255,255,255,.8),transparent 55%),linear-gradient(170deg,#fde9e6,#ebb7b3)',
+   video:'media/intro-rose.mp4', date:'2027-01-09T17:00:00', venue:'The Rose Pavilion', city:'Jaipur',
+   swatches:[['Blush','#f3c6c3'],['Champagne','#e8d3b0'],['Rose Gold','#b76e79'],['Sage','#a3b09a']] },
+
+ { id:'riad', title:'Moroccan Riad Zellige', couple:['Maryam','Idris'], motif:'zellige', mode:'swing',
+   desc:'Towering carved cedar doors open onto a moonlit riad: turquoise zellige tilework, a tiled fountain and glowing brass lanterns.',
+   tags:['Zellige Tile','Cedar & Brass','Turquoise'],
+   bg1:'#0c4a52', bg2:'#041f24', ink:'#f6ead0', accent:'#e0b25c', accentInk:'#1b1205', glow:'60,170,180', amb:['#07343a','#020d0f'],
+   scene:'radial-gradient(circle at 50% 30%,rgba(255,200,110,.3),transparent 55%),linear-gradient(180deg,#127080,#06262c)',
+   video:'media/intro-Moroccan_riad_doors.mp4', date:'2027-02-06T18:00:00', venue:'Riad Al Yasmin', city:'Marrakech',
+   swatches:[['Zellige Teal','#127080'],['Terracotta','#c4623a'],['Brass','#e0b25c'],['Cream','#f1e4c8']] },
+
+ { id:'persian', title:'Persian Turquoise Iwan', couple:['Layla','Kamran'], motif:'iwan', mode:'part',
+   desc:'A towering iwan arch of turquoise muqarnas parts to reveal a mirrored garden pool beneath a gilded dome.',
+   tags:['Muqarnas','Turquoise','Gilded Dome'],
+   bg1:'#f3ecdc', bg2:'#c9dcd8', ink:'#0e3b46', accent:'#a8802f', accentInk:'#fffaf0', glow:'80,190,200', amb:['#0b3a44','#02101a'],
+   scene:'radial-gradient(circle at 50% 100%,rgba(255,226,160,.6),transparent 55%),linear-gradient(180deg,#e9f3f0,#9fcbc7)',
+   video:'media/intro-Persian_iwan.mp4', date:'2027-02-20T17:30:00', venue:'The Turquoise Iwan', city:'Istanbul',
+   swatches:[['Turquoise','#2fa3a8'],['Ivory','#f3ecdc'],['Gold','#a8802f'],['Lapis','#1f3f8f']] },
+
+ { id:'noir', title:'Noir Gold Deco', couple:['Hana','Zayd'], motif:'deco', mode:'part',
+   desc:'Black lacquer and liquid gold: art-deco sunburst gates glide apart on an evening of quiet, glittering grandeur.',
+   tags:['Black Lacquer','Art Deco','Liquid Gold'],
+   bg1:'#15110d', bg2:'#050403', ink:'#f3e7cb', accent:'#d9b25f', accentInk:'#150f05', glow:'217,178,95', amb:['#1b1610','#050403'],
+   scene:'radial-gradient(circle at 50% 100%,rgba(217,178,95,.35),transparent 60%),linear-gradient(180deg,#221a12,#050403)',
+   video:'media/intro-Noir_gold_gates.mp4', date:'2027-03-06T19:00:00', venue:'The Gilded Ballroom', city:'London',
+   swatches:[['Onyx','#15110d'],['Champagne Gold','#d9b25f'],['Ivory','#efe4cc'],['Oxblood','#5b1620']] },
+
+ { id:'haveli', title:'Rajputana Haveli Sunset', couple:['Aaliyah','Sameer'], motif:'haveli', mode:'swing',
+   desc:'Painted haveli doors open at golden hour onto a sandstone courtyard of marigolds, jharokha arches and a blazing saffron sky.',
+   tags:['Haveli','Saffron Sunset','Marigold'],
+   bg1:'#8a2f12', bg2:'#3a0f05', ink:'#fdeccb', accent:'#f0b94f', accentInk:'#2a0f02', glow:'240,150,70', amb:['#5a1c08','#160602'],
+   scene:'radial-gradient(circle at 50% 60%,rgba(255,200,110,.55),transparent 55%),linear-gradient(180deg,#c24a1a,#4a1507)',
+   video:'media/intro-Haveli_doors_sunset.mp4', date:'2027-03-20T17:00:00', venue:'Samode Haveli', city:'Jaipur',
+   swatches:[['Saffron','#e08a2a'],['Terracotta','#a8381a'],['Marigold','#f0b94f'],['Fuchsia','#b0305f']] }
+];
+
+/* ═════════════ Helpers ═════════════ */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const N=THEMES.length, mod=(a,n)=>((a%n)+n)%n, pad=v=>String(v).padStart(2,'0');
+const isMobile=()=>matchMedia('(max-width:959px)').matches;
+const themeVars=t=>`--bg1:${t.bg1};--bg2:${t.bg2};--ink:${t.ink};--accent:${t.accent};--accent-ink:${t.accentInk};--scene:${t.scene};--glow:${t.glow}`;
+// card previews: preload none, played only while the card is active (performance)
+const cardVid=t=>t.video?`<video src="${t.video}" muted loop playsinline preload="none" style="opacity:0" onloadeddata="this.style.opacity=1;this.parentNode.classList.add('hasvid')" onerror="this.remove()"></video>`:'';
+const REDUCED=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ═════════════ Splash ═════════════ */
+setTimeout(()=>{$('#splash').classList.add('hide');document.body.classList.add('ready')},REDUCED?100:1500);
+
+/* ═════════════ Ambient layers, geometric stars ═════════════ */
+const ambients=$('#ambients');
+THEMES.forEach(t=>{
+  const d=document.createElement('div');d.className='amb';
+  d.style.background=`radial-gradient(ellipse at 75% 45%,rgba(${t.glow},.32),transparent 55%),radial-gradient(ellipse at 15% 85%,rgba(${t.glow},.12),transparent 50%),linear-gradient(160deg,${t.amb[0]},${t.amb[1]})`;
+  ambients.appendChild(d);
+});
+(function(){
+  const sq=(r,rot)=>`<rect x="${100-r}" y="${100-r}" width="${2*r}" height="${2*r}" transform="rotate(${rot} 100 100)"/>`;
+  let a='',b='';
+  for(let i=0;i<4;i++)a+=sq(92-i*5,i*11)+sq(92-i*5,45+i*11);
+  for(let i=0;i<3;i++)b+=sq(88-i*8,i*7)+sq(88-i*8,45+i*7);
+  a+='<circle cx="100" cy="100" r="99"/><circle cx="100" cy="100" r="96"/>';
+  $('#starA').innerHTML=a;$('#starB').innerHTML=b;
+})();
+
+/* ═════════════ Gold stardust ═════════════ */
+const dust=$('#dust'),dc=dust.getContext('2d');let W,H,rgb='201,163,95';
+const parts=Array.from({length:70},()=>({x:Math.random(),y:Math.random(),r:.4+Math.random()*1.6,vy:.00008+Math.random()*.0003,vx:(Math.random()-.5)*.00008,p:Math.random()*6.28}));
+function sizeDust(){W=dust.width=innerWidth;H=dust.height=innerHeight}
+addEventListener('resize',sizeDust);sizeDust();
+(function loop(t){
+  dc.clearRect(0,0,W,H);
+  for(const p of parts){
+    p.y-=p.vy*H/10;p.x+=p.vx;if(p.y<-.02){p.y=1.02;p.x=Math.random()}
+    const a=.15+.5*Math.abs(Math.sin(t*.0015+p.p));
+    dc.fillStyle=`rgba(${rgb},${a})`;dc.shadowColor=`rgba(${rgb},.8)`;dc.shadowBlur=6;
+    dc.beginPath();dc.arc(p.x*W,p.y*H,p.r,0,6.283);dc.fill();
+  }
+  if(!REDUCED)requestAnimationFrame(loop);
+})(0);
+
+/* ═════════════ Music engine ═════════════ */
+const Music={ctx:null,master:null,on:false,timer:null,audio:null,idx:2,
+  async start(){
+    if(this.on)return;this.on=true;$('#sound').classList.add('on');
+    if(MUSIC_SRC){
+      this.audio=this.audio||Object.assign(new Audio(MUSIC_SRC),{loop:true,volume:.55});
+      try{await this.audio.play();return}catch(e){/* fall back to synth */}
+    }
+    this.synth();
+  },
+  synth(){
+    const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+    const c=this.ctx=this.ctx||new AC();c.resume();
+    if(!this.master){
+      const m=this.master=c.createGain();m.gain.value=0;
+      const dl=c.createDelay(2);dl.delayTime.value=.45;const fb=c.createGain();fb.gain.value=.4;
+      const lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=1800;
+      m.connect(c.destination);m.connect(dl);dl.connect(lp);lp.connect(fb);fb.connect(dl);lp.connect(c.destination);
+      [146.83,220,293.66,369.99].forEach((f,k)=>{
+        const o=c.createOscillator(),g=c.createGain(),l=c.createOscillator(),lg=c.createGain();
+        o.frequency.value=f;o.detune.value=(k-1.5)*5;g.gain.value=.05;
+        l.frequency.value=.06+k*.03;lg.gain.value=.025;l.connect(lg);lg.connect(g.gain);
+        o.connect(g);g.connect(m);o.start();l.start();
+      });
+    }
+    const m=this.master;m.gain.cancelScheduledValues(c.currentTime);m.gain.linearRampToValueAtTime(.9,c.currentTime+3);
+    const sc=[293.66,311.13,369.99,392,440,466.16,554.37,587.33];
+    clearInterval(this.timer);
+    this.timer=setInterval(()=>{
+      if(!this.on)return;
+      this.idx=Math.max(0,Math.min(sc.length-1,this.idx+Math.floor(Math.random()*5)-2));
+      const o=c.createOscillator(),g=c.createGain(),t=c.currentTime;
+      o.type='triangle';o.frequency.value=sc[this.idx];
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.12,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+2.4);
+      o.connect(g);g.connect(m);o.start(t);o.stop(t+2.5);
+    },1500);
+  },
+  stop(){
+    this.on=false;$('#sound').classList.remove('on');clearInterval(this.timer);
+    if(this.audio)this.audio.pause();
+    if(this.ctx&&this.master){const t=this.ctx.currentTime;this.master.gain.cancelScheduledValues(t);this.master.gain.linearRampToValueAtTime(0,t+.6)}
+  },
+  toggle(){this.on?this.stop():this.start()}
+};
+$('#sound').onclick=()=>Music.toggle();
+
+/* ═════════════ Build ring, dial, pills, page sections ═════════════ */
+const ring=$('#ring'),ringWrap=$('#ringWrap');
+ring.innerHTML=THEMES.map((t,i)=>`
+  <div class="card" data-i="${i}" role="option" aria-label="${t.title}, ${t.couple[0]} and ${t.couple[1]}" style="${themeVars(t)}">
+    <div class="cv">
+      <span class="bsm">بِسْمِ ٱللَّٰهِ</span>
+      <div class="arch motif" data-motif="${t.motif}">${cardVid(t)}</div>
+      <div class="c-names">${t.couple[0]}<i>&amp;</i>${t.couple[1]}</div>
+      <div class="c-title">${t.title}</div>
+    </div><div class="shade"></div>
+  </div>`).join('');
+const cards=$$('.card',ring),shades=cards.map(c=>$('.shade',c));
+$('#dial').innerHTML=THEMES.map((t,i)=>`<button class="dot" data-i="${i}" style="--a:${i*360/N}deg" aria-label="${t.title}"></button>`).join('')+
+  '<div class="hand" id="hand"></div><div class="num" id="num"></div>';
+$('#pills').innerHTML=THEMES.map(()=>'<i></i>').join('');
+$('#eyebrow').textContent='The Collection · '+pad(N)+' Signature Designs';
+
+// marquee
+(function(){
+  const w=['Bismillah','Nikah','Mehendi','Qawwali Night','Walima','Mubarak','Barakallah','Qubool Hai'];
+  $('#mq').innerHTML=[...w,...w].map(x=>`<span>${x}</span>`).join('');
+})();
+// collection tiles
+$('#tiles').innerHTML=THEMES.map((t,i)=>`
+  <button class="tile reveal" data-i="${i}" style="${themeVars(t)};--d:${(i%5)*.07}s" aria-label="Preview ${t.title}">
+    <div class="art motif" data-motif="${t.motif}"><span class="tn">${t.couple[0]}<i>&amp;</i>${t.couple[1]}</span></div>
+    <span class="tt">${t.title}</span>
+  </button>`).join('');
+$('#tiles').addEventListener('click',e=>{
+  const b=e.target.closest('.tile');if(!b)return;
+  focusCard(+b.dataset.i);scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ═════════════ Spring-physics circle shift ═════════════ */
+let pos=0,target=0,vel=0,raf=0,lastT=0,active=-1,dragging=false;
+const R=()=>ringWrap.clientWidth<520?240:350, SPACING=()=>ringWrap.clientWidth<520?105:175;
+
+function render(){
+  const r=R();
+  cards.forEach((el,i)=>{
+    const o=mod(i-pos+N/2,N)-N/2,a=Math.abs(o);
+    const th=Math.max(-2.6,Math.min(2.6,o))*.55;
+    const x=Math.sin(th)*r,z=(Math.cos(th)-1)*r,deg=th*180/Math.PI,s=1-.07*Math.min(a,3);
+    const op=a>2.3?Math.max(0,1-(a-2.3)/.4):1;
+    el.style.transform=`translate3d(${x}px,0,${z}px) rotateY(${-deg}deg) scale(${s})`;
+    el.style.opacity=op;el.style.zIndex=Math.round(100-a*10);el.style.pointerEvents=op<.2?'none':'';
+    shades[i].style.opacity=Math.min(.72,a*.3);
+    el.classList.toggle('active',a<.5);
+    el.setAttribute('aria-selected',a<.5);
+  });
+}
+function setActive(){
+  const idx=mod(Math.round(dragging?pos:target),N);
+  if(idx!==active){active=idx;onActive(idx)}
+}
+function step(now){
+  const dt=Math.min(.032,(now-lastT)/1000);lastT=now;
+  vel+=(-130*(pos-target)-17*vel)*dt;pos+=vel*dt;render();setActive();
+  if(Math.abs(pos-target)<.0006&&Math.abs(vel)<.006){pos=target;vel=0;render();raf=0;return}
+  raf=requestAnimationFrame(step);
+}
+function go(t){target=t;$('#hand').style.setProperty('--ang',(t*360/N)+'deg');if(!raf){lastT=performance.now();raf=requestAnimationFrame(step)}}
+const shift=d=>go(Math.round(target)+d);
+function focusCard(i){const cur=mod(Math.round(target),N);go(Math.round(target)+mod(i-cur+N/2,N)-N/2)}
+
+let sx=0,sp=0,moved=0,downCard=null,lp=0,lt=0,dv=0;
+ringWrap.addEventListener('pointerdown',e=>{
+  dragging=true;moved=0;sx=e.clientX;sp=pos;lp=pos;lt=performance.now();dv=0;
+  downCard=e.target.closest('.card');cancelAnimationFrame(raf);raf=0;vel=0;ringWrap.setPointerCapture(e.pointerId);
+});
+ringWrap.addEventListener('pointermove',e=>{
+  if(!dragging)return;
+  const dx=e.clientX-sx;moved=Math.max(moved,Math.abs(dx));
+  pos=sp-dx/SPACING();const now=performance.now();
+  dv=.7*dv+.3*((pos-lp)/Math.max(1,now-lt)*1000);lp=pos;lt=now;
+  render();setActive();
+});
+function endDrag(){
+  if(!dragging)return;dragging=false;
+  if(moved<6&&downCard){pos=target=Math.round(pos);tapCard(+downCard.dataset.i);return}
+  vel=dv;go(Math.round(pos+Math.max(-2,Math.min(2,dv*.22))));
+}
+ringWrap.addEventListener('pointerup',endDrag);
+ringWrap.addEventListener('pointercancel',endDrag);
+ringWrap.addEventListener('wheel',e=>{
+  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)&&Math.abs(e.deltaX)>20){e.preventDefault();shift(e.deltaX>0?1:-1)}
+},{passive:false});
+
+function tapCard(i){
+  const cur=mod(Math.round(target),N);
+  if(i===cur){selectCurrent();go(target)}
+  else go(Math.round(target)+mod(i-cur+N/2,N)-N/2);
+}
+$('#prev').onclick=()=>shift(-1);$('#next').onclick=()=>shift(1);
+$('#dial').addEventListener('click',e=>{const b=e.target.closest('.dot');if(b)focusCard(+b.dataset.i)});
+addEventListener('keydown',e=>{
+  if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+  if(e.key==='ArrowRight')shift(1);
+  else if(e.key==='ArrowLeft')shift(-1);
+  else if(e.key==='Enter'&&e.target===ring)selectCurrent();
+  else if(e.key==='Escape')closePhone();
+});
+
+/* ═════════════ Active theme change ═════════════ */
+const info=$('#info');let phoneT=0;
+function playCardVideo(i){cards.forEach((c,k)=>$$('video',c).forEach(v=>k===i?v.play().catch(()=>{}):v.pause()))}
+function onActive(i){
+  const t=THEMES[i];
+  $$('.amb').forEach((a,k)=>a.classList.toggle('on',k===i));
+  document.documentElement.style.setProperty('--glow',t.glow);rgb=t.glow;
+  $$('.dial .dot').forEach((d,k)=>d.classList.toggle('on',k===i));
+  $$('#pills i').forEach((d,k)=>d.classList.toggle('on',k===i));
+  $('#num').innerHTML=`${pad(i+1)}<small>/${pad(N)}</small>`;
+  info.innerHTML=`<h2>${t.title}</h2><p class="who">${t.couple[0]} &amp; ${t.couple[1]}</p><p class="desc">${t.desc}</p>
+    <div class="chips">${t.tags.map(x=>`<span>${x}</span>`).join('')}</div>
+    <div class="pal">${t.swatches.map(s=>`<i title="${s[0]}" style="background:${s[1]}"></i>`).join('')}</div>`;
+  info.classList.remove('in');void info.offsetWidth;info.classList.add('in');
+  playCardVideo(i);
+  renderSwitcher(i);
+  clearTimeout(phoneT);                                   // debounce: don't rebuild the phone while dragging past cards
+  phoneT=setTimeout(()=>{
+    renderPhone(i);
+    if(autoOpen){autoOpen=false;setTimeout(()=>{if(active===i)openInvite()},500)}
+  },dragging?220:140);
+}
+
+/* ═════════════ Phone: cover + invitation ═════════════ */
+const scr=$('#screen'),phone=$('#phone'),stageEl=$('#stage');
+let cdTimer=0,state='idle',scratchDone=false,curTheme=null,tReveal=0,tSeq=[],autoOpen=false;
+function setState(s){state=s;stageEl.classList.toggle('opened',s!=='idle')}
+
+function coverHTML(t){
+  const ini=t.couple[0][0]+'&amp;'+t.couple[1][0];
+  return `
+ <div class="cover" id="cover">
+  <div class="backdrop">${t.video?`<video id="introVid" src="${t.video}#t=0.001" muted playsinline webkit-playsinline preload="auto"
+     onloadeddata="this.closest('.cover').classList.add('has-video')" onerror="this.remove()"></video>`:''}</div>
+  <div class="panel l"></div><div class="panel r"></div>
+  <div class="cover-center">
+    <span class="bsm">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
+    <p class="small">Together with their families</p>
+    <h2 class="names">${t.couple[0]}<span>&amp;</span>${t.couple[1]}</h2>
+    <p class="small">invite you to their Nikah</p>
+    <button class="seal" id="openBtn" aria-label="Tap to open the invitation"><span>${ini}</span></button>
+    <p class="tap">Tap to Open</p>
+  </div>
+  <div class="veil"></div>
+ </div>`}
+
+function inviteHTML(t){
+  const d=new Date(t.date),add=k=>{const x=new Date(d);x.setDate(x.getDate()+k);return x};
+  const f=(dt,o)=>dt.toLocaleDateString('en-GB',o);
+  const par=t.parents||['Mr. & Mrs. Khan','Mr. & Mrs. Siddiqui'];
+  const fns=[['Mehendi',add(-2),'4:00 PM','Henna, music & marigolds'],['Qawwali Night',add(-1),'8:00 PM','An evening of Sufi devotion'],['Walima',add(1),'7:30 PM','The blessed feast of the groom\'s family']];
+  const prog=[['4:30 PM','Guest Arrival','Rose-water welcome & refreshments'],['5:30 PM','Solemnisation · Nikah','The sacred vows, in the presence of loved ones'],['6:30 PM','Photographs','Portraits with family & friends'],['8:00 PM','Royal Dinner Feast','A grand banquet beneath the chandeliers']];
+  const maps='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(t.venue+' '+t.city);
+  return `
+ <div class="invite" id="invite">
+  <section class="sec hero">
+    <div class="bsm rv">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+    <p class="small rv">With the blessings of Allah</p>
+    <h2 class="names rv">${t.couple[0]}<span>&amp;</span>${t.couple[1]}</h2>
+    <div class="orn rv">✦</div>
+    <p class="trans rv">request the honour of your presence at the celebration of their Nikah</p>
+    <p class="parents rv"><b>${t.couple[0]}</b>, daughter of ${par[0]}<br><b>${t.couple[1]}</b>, son of ${par[1]}</p>
+  </section>
+
+  <section class="sec">
+    <p class="small rv">Sacred Blessing</p>
+    <p class="ayah rv">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+    <p class="trans rv">“And among His signs is that He created for you mates from among yourselves, that you may find tranquillity in them; and He placed between you love and mercy.”</p>
+    <p class="ref rv">Surah Ar-Rum · 30:21</p>
+    <div class="orn rv">✦</div>
+    <p class="trans rv">Barakallahu laka wa baraka ‘alayka wa jama‘a baynakuma fi khayr.</p>
+  </section>
+
+  <section class="sec">
+    <p class="small rv">The Sacred Date</p>
+    <h3 class="rv">Scratch to Reveal</h3>
+    <div class="scratch rv" id="scratch">
+      <div class="date"><small>${f(d,{weekday:'long'})}</small><b>${d.getDate()}</b><span>${f(d,{month:'long',year:'numeric'})}</span></div>
+      <canvas id="foil"></canvas>
+    </div>
+    <p class="note rv">Rub the gold foil gently</p>
+  </section>
+
+  <section class="sec">
+    <p class="small rv">Counting the moments</p>
+    <h3 class="rv">Until We Say “Qubool Hai”</h3>
+    <div class="cd rv" id="cd"><div><b>00</b><small>Days</small></div><div><b>00</b><small>Hours</small></div><div><b>00</b><small>Mins</small></div><div><b>00</b><small>Secs</small></div></div>
+  </section>
+
+  <section class="sec">
+    <p class="small rv">The Programme</p>
+    <h3 class="rv">${f(d,{day:'numeric',month:'long'})} · Itinerary</h3>
+    <ul class="tl">${prog.map(p=>`<li class="rv"><time>${p[0]}</time><h4>${p[1]}</h4><p>${p[2]}</p></li>`).join('')}</ul>
+  </section>
+
+  <section class="sec">
+    <p class="small rv">Celebrations</p>
+    <h3 class="rv">Pre &amp; Post Functions</h3>
+    <div class="fn">${fns.map(x=>`<div class="rv"><h4>${x[0]}</h4><time>${f(x[1],{weekday:'short',day:'numeric',month:'short'})} · ${x[2]}</time><p>${x[3]}</p></div>`).join('')}</div>
+  </section>
+
+  <section class="sec">
+    <p class="small rv">Venue</p>
+    <h3 class="rv">Where We Gather</h3>
+    <div class="venue rv">${t.venue}</div><div class="venue-c rv">${t.city}</div>
+    <a class="ghost rv" href="${maps}" target="_blank" rel="noopener">Open in Google Maps</a>
+    <div class="orn rv">✦</div>
+    <p class="small rv">Dress Code</p>
+    <div class="sw rv">${t.swatches.map(s=>`<div><i style="background:${s[1]}"></i>${s[0]}</div>`).join('')}</div>
+  </section>
+
+  <div class="foot"><b>${t.couple[0]} &amp; ${t.couple[1]}</b>JazakAllahu Khayran for your duas</div>
+ </div>`}
+
+function renderPhone(i){
+  const t=curTheme=THEMES[i];
+  clearInterval(cdTimer);clearTimeout(tReveal);tSeq.forEach(clearTimeout);tSeq=[];
+  setState('idle');scratchDone=false;resetTilt();
+  scr.className='screen';
+  scr.setAttribute('style',themeVars(t));scr.dataset.mode=t.mode;
+  scr.innerHTML=inviteHTML(t)+coverHTML(t)+'<div class="cue" aria-hidden="true"><i></i><span>Scroll</span></div>';
+  const cover=$('#cover'),inv=$('#invite');
+  $('#openBtn').onclick=e=>{e.stopPropagation();openInvite()};
+  cover.onclick=()=>{if(state==='opening')reveal(true)};              // tap again = skip
+  inv.addEventListener('scroll',()=>scr.classList.toggle('scrolled',inv.scrollTop>40),{passive:true});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{root:inv,threshold:.12});
+  $$('.rv',inv).forEach(el=>io.observe(el));
+}
+
+const DOOR_MS=3200;
+function openInvite(){
+  const cover=$('#cover');
+  if(!cover||state!=='idle')return;
+  setState('opening');resetTilt();Music.start();                      // music starts on first tap
+  cover.classList.add('opening');                                     // seal + text vanish, doors move
+  const v=$('#introVid');let ms=DOOR_MS;
+  if(v){
+    v.muted=true;
+    v.playsInline=true;
+    v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','');
+    try{if(v.readyState>0)v.currentTime=0}catch(e){}
+    if(isFinite(v.duration)&&v.duration>1)ms=Math.round(Math.min(v.duration,8)*1000);   // sync to real clip length
+    v.onended=()=>reveal(false);
+    const p=v.play();
+    if(p!==undefined){
+      p.catch(()=>{
+        cover.classList.remove('has-video');          // autoplay blocked → fallback to CSS doors
+      });
+    }
+  }
+  cover.style.setProperty('--door',ms+'ms');
+  tReveal=setTimeout(()=>reveal(false),ms+250);
+}
+
+function reveal(skip){
+  if(state!=='opening')return;
+  setState('revealed');clearTimeout(tReveal);
+  const cover=$('#cover'),inv=$('#invite'),v=$('#introVid'),k=skip?.3:1;
+  if(!cover||!inv)return;
+  if(skip){cover.classList.add('skip');if(v){v.onended=null;v.pause()}}
+  cover.style.setProperty('--k',k);
+  cover.classList.add('veil-on');                                     // 1. velvet vignette
+  tSeq=[
+    setTimeout(()=>{inv.classList.add('armed');cover.classList.add('fade');initScratch();startCountdown()},700*k),   // 2. card glides in
+    setTimeout(()=>{inv.classList.add('unlocked');scr.classList.add('cue-on')},1900*k),                               // 3. scroll unlocks
+    setTimeout(()=>cover.classList.add('gone'),2300*k)
+  ];
+}
+
+/* toast + select */
+const toast=$('#toast');let toastT=0;
+function say(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>toast.classList.remove('on'),2800)}
+function selectCurrent(){
+  if(isMobile())document.body.classList.add('phone-open');
+  else{
+    phone.classList.remove('pulse');void phone.offsetWidth;phone.classList.add('pulse');
+    if(state==='idle')say('Tap the gold seal to open');
+  }
+}
+function closePhone(){if(document.body.classList.contains('phone-open')){document.body.classList.remove('phone-open');Music.stop()}}
+$('#selectBtn').onclick=selectCurrent;
+$('#close').onclick=closePhone;
+$('#replay').onclick=()=>renderPhone(active);
+
+/* phone parallax tilt (desktop, mouse only, idle state only) */
+function resetTilt(){phone.style.setProperty('--rx','0deg');phone.style.setProperty('--ry','0deg')}
+stageEl.addEventListener('pointermove',e=>{
+  if(REDUCED||isMobile()||e.pointerType!=='mouse')return;
+  if(state!=='idle'){resetTilt();return}                              // keep scratch-canvas coordinates exact
+  const b=stageEl.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;
+  phone.style.setProperty('--ry',(x*12).toFixed(2)+'deg');phone.style.setProperty('--rx',(-y*9).toFixed(2)+'deg');
+});
+stageEl.addEventListener('pointerleave',resetTilt);
+
+/* ═════════════ Intro switcher ═════════════ */
+function focusCard(i){const cur=mod(Math.round(target),N);go(Math.round(target)+mod(i-cur+N/2,N)-N/2)}
+function renderSwitcher(i){
+  const t=THEMES[i],sw=$('#switcher');
+  const peers=THEMES.map((x,k)=>[x,k]).filter(([x])=>t.group&&x.group===t.group);
+  sw.classList.toggle('show',peers.length>1);
+  sw.innerHTML=peers.map(([x,k])=>`<button role="tab" class="${k===i?'on':''}" data-i="${k}" aria-selected="${k===i}">${x.intro.icon}<span>${x.intro.label}</span></button>`).join('');
+}
+$('#switcher').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b||+b.dataset.i===active)return;
+  autoOpen=state!=='idle';                                            // already opened? replay the new intro automatically
+  focusCard(+b.dataset.i);
+});
+
+/* ═════════════ Countdown ═════════════ */
+function startCountdown(){
+  const end=new Date(curTheme.date).getTime(),els=$$('#cd b');
+  const tick=()=>{
+    const s=Math.max(0,Math.floor((end-Date.now())/1000));
+    [Math.floor(s/86400),Math.floor(s%86400/3600),Math.floor(s%3600/60),s%60].forEach((v,i)=>els[i]&&(els[i].textContent=pad(v)));
+  };
+  tick();clearInterval(cdTimer);cdTimer=setInterval(tick,1000);
+}
+
+/* ═════════════ Gold-foil scratch card ═════════════ */
+function initScratch(){
+  const c=$('#foil');if(!c||scratchDone)return;
+  const box=c.parentElement,dpr=Math.min(2,devicePixelRatio||1),r=c.getBoundingClientRect();
+  if(!r.width)return;
+  c.width=r.width*dpr;c.height=r.height*dpr;
+  const x=c.getContext('2d',{willReadFrequently:true});
+  const g=x.createLinearGradient(0,0,c.width,c.height);
+  ['#8a6a2c','#f0d9a6','#c9a35f','#fff1c9','#b58a3a','#e9cf93','#8a6a2c'].forEach((col,i,a)=>g.addColorStop(i/(a.length-1),col));
+  x.fillStyle=g;x.fillRect(0,0,c.width,c.height);
+  for(let k=0;k<700;k++){x.fillStyle=`rgba(255,255,255,${Math.random()*.35})`;x.fillRect(Math.random()*c.width,Math.random()*c.height,dpr*(1+Math.random()*2),dpr)}
+  x.fillStyle='rgba(70,45,10,.75)';x.textAlign='center';x.textBaseline='middle';
+  x.font=`italic 600 ${c.width*.075}px "Cormorant Garamond",serif`;x.fillText('✦  Scratch to reveal  ✦',c.width/2,c.height/2);
+
+  let down=false,lx=0,ly=0,n=0;
+  const pt=e=>{const b=c.getBoundingClientRect();return[(e.clientX-b.left)*c.width/b.width,(e.clientY-b.top)*c.height/b.height]};
+  const cleared=()=>{const d=x.getImageData(0,0,c.width,c.height).data;let a=0,t=0;
+    for(let yy=0;yy<c.height;yy+=8)for(let xx=0;xx<c.width;xx+=8){t++;if(d[(yy*c.width+xx)*4+3]<40)a++}return a/t};
+  c.onpointerdown=e=>{down=true;[lx,ly]=pt(e);c.setPointerCapture(e.pointerId);stroke(lx,ly)};
+  c.onpointermove=e=>{if(down){const[px,py]=pt(e);stroke(px,py)}};
+  c.onpointerup=c.onpointercancel=()=>{down=false;if(cleared()>.5)finish()};
+  function stroke(px,py){
+    x.globalCompositeOperation='destination-out';x.lineWidth=34*dpr;x.lineCap=x.lineJoin='round';
+    x.beginPath();x.moveTo(lx,ly);x.lineTo(px,py);x.stroke();lx=px;ly=py;
+    if(++n%12===0&&cleared()>.5)finish();
+  }
+  function finish(){scratchDone=true;box.classList.add('done')}
+}
+addEventListener('resize',()=>{if(state==='revealed'&&!scratchDone)initScratch()});
+
+/* ═════════════ Page chrome: header, reveal-on-scroll ═════════════ */
+const topEl=$('#top');
+addEventListener('scroll',()=>topEl.classList.toggle('solid',scrollY>40),{passive:true});
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.15});
+$$('.reveal').forEach(el=>rio.observe(el));
+
+/* ═════════════ Boot ═════════════ */
+render();setActive();go(0);
+</script>
+</body>
 </html>

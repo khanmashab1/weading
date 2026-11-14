@@ -324,7 +324,13 @@ function showSlide(index) {
       document.body.classList.remove("intro-locked");
     }
 
-    function openInvitation() {
+    function openInvitation(e) {
+      if (e) {
+        if (e.target.closest && e.target.closest(".scroll-cue, #introSwitcher, #musicToggle")) {
+          return;
+        }
+      }
+
       // Once opening has started, ignore subsequent clicks so the doors open fully before showing the card
       if (isOpening) return;
       isOpening = true;
@@ -348,10 +354,21 @@ function showSlide(index) {
       const doorOpenDelay = (config.media && config.media.doorOpenDelay) ? config.media.doorOpenDelay : 4.2;
 
       if (video) {
-        video.currentTime = 0;
-        video.play().catch(() => undefined);
+        // Essential mobile video settings (iOS WebKit + Android Chrome)
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
 
-        // Only reveal the card when the doors are completely open (at 4.2s)
+        try {
+          if (video.readyState > 0) {
+            video.currentTime = 0;
+          }
+        } catch (e) {
+          console.warn("video.currentTime ignored", e);
+        }
+
+        // Only reveal the card when the doors are completely open
         const checkTime = () => {
           if (video.currentTime >= doorOpenDelay || video.ended) {
             revealCard();
@@ -362,17 +379,30 @@ function showSlide(index) {
         video.addEventListener("timeupdate", checkTime);
         video.addEventListener("ended", revealCard, { once: true });
 
-        // Fallback timer if video timeupdate is throttled by the browser
-        setTimeout(revealCard, (doorOpenDelay + 0.4) * 1000);
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.warn("Video play blocked on mobile:", err);
+            // If play was blocked or prevented, reveal card smoothly after brief delay
+            setTimeout(revealCard, 1200);
+          });
+        }
+
+        // Fallback timer if video timeupdate is throttled by mobile power-save mode
+        setTimeout(revealCard, (doorOpenDelay + 0.5) * 1000);
       } else {
         setTimeout(revealCard, (doorOpenDelay) * 1000);
       }
     }
 
-    // Use click and keydown only — avoid duplicate pointerdown trigger
     hero.addEventListener("click", openInvitation);
+    hero.addEventListener("touchend", (e) => {
+      if (!isOpening) {
+        openInvitation(e);
+      }
+    }, { passive: true });
     hero.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") openInvitation();
+      if (event.key === "Enter" || event.key === " ") openInvitation(event);
     });
 
     const scrollCue = select(".scroll-cue");
