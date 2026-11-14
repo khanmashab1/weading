@@ -488,6 +488,14 @@ main {
   pointer-events: none;
   will-change: opacity, transform;
   line-height: 1.45;
+  transition: opacity 1.2s cubic-bezier(.16,.75,.25,1), transform 1.2s cubic-bezier(.16,.75,.25,1);
+}
+
+.hero:not(.card-shown) .hero-content {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(28px) !important;
 }
 
 .bismillah {
@@ -2233,13 +2241,12 @@ textarea:focus-visible {
     transform: none;
   }
 
-  .hero.is-open .hero-content,
   .hero.card-shown .hero-content {
     animation: none;
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-    pointer-events: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 }
 

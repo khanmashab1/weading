@@ -61,21 +61,21 @@ window.INVITATION_CONFIGS = {
     media: {
       introVideo: "./media/intro-Royal_palace_doors_opening.mp4",
       introPoster: "./media/intro-Royal_palace_doors_opening.webp",
-      doorOpenDelay: 3.2,
+      doorOpenDelay: 4.2,
       introList: [
         {
           id: "palace-doors",
           name: "Royal Palace Doors",
           video: "./media/intro-Royal_palace_doors_opening.mp4",
           poster: "./media/intro-Royal_palace_doors_opening.webp",
-          doorOpenDelay: 3.2,
+          doorOpenDelay: 4.2,
         },
         {
           id: "marble-archway",
           name: "Marble Archway",
           video: "./media/intro-Marble_archway.mp4",
           poster: "./media/intro-Marble_archway.webp",
-          doorOpenDelay: 3.2,
+          doorOpenDelay: 4.0,
         },
       ],
       music: "./media/music-placeholder.mp3",
@@ -804,11 +804,11 @@ window.INVITATION_CONFIGS = {
   if (introParam === "archway" || introParam === "marble") {
     activeCfg.media.introVideo = "./media/intro-Marble_archway.mp4";
     activeCfg.media.introPoster = "./media/intro-Marble_archway.webp";
-    activeCfg.media.doorOpenDelay = 3.2;
+    activeCfg.media.doorOpenDelay = 4.0;
   } else if (introParam === "doors" || introParam === "palace") {
     activeCfg.media.introVideo = "./media/intro-Royal_palace_doors_opening.mp4";
     activeCfg.media.introPoster = "./media/intro-Royal_palace_doors_opening.webp";
-    activeCfg.media.doorOpenDelay = 3.2;
+    activeCfg.media.doorOpenDelay = 4.2;
   }
 
   window.INVITATION_CONFIG = activeCfg;

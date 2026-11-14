@@ -314,7 +314,7 @@ function showSlide(index) {
   function initializeOpening() {
     const hero = select("#hero");
     const video = select("#introVideo");
-    let opened = false;
+    let isOpening = false;
     let cardRevealed = false;
 
     function revealCard() {
@@ -325,13 +325,10 @@ function showSlide(index) {
     }
 
     function openInvitation() {
-      if (opened) {
-        // If clicked again while doors are opening, instantly show the card
-        revealCard();
-        return;
-      }
+      // Once opening has started, ignore subsequent clicks so the doors open fully before showing the card
+      if (isOpening) return;
+      isOpening = true;
 
-      opened = true;
       hero.classList.remove("is-closed");
       hero.classList.add("is-open");
       hero.removeAttribute("role");
@@ -348,13 +345,13 @@ function showSlide(index) {
           .catch(updateMusicControl);
       }
 
+      const doorOpenDelay = (config.media && config.media.doorOpenDelay) ? config.media.doorOpenDelay : 4.2;
+
       if (video) {
         video.currentTime = 0;
         video.play().catch(() => undefined);
 
-        // Wait until doors or archway open fully (~3.2s) before showing card
-        const doorOpenDelay = (config.media && config.media.doorOpenDelay) || 3.2;
-
+        // Only reveal the card when the doors are completely open (at 4.2s)
         const checkTime = () => {
           if (video.currentTime >= doorOpenDelay || video.ended) {
             revealCard();
@@ -365,17 +362,15 @@ function showSlide(index) {
         video.addEventListener("timeupdate", checkTime);
         video.addEventListener("ended", revealCard, { once: true });
 
-        // Fallback timer if video timeupdate is throttled
-        setTimeout(revealCard, (doorOpenDelay + 0.3) * 1000);
+        // Fallback timer if video timeupdate is throttled by the browser
+        setTimeout(revealCard, (doorOpenDelay + 0.4) * 1000);
       } else {
-        setTimeout(revealCard, 800);
+        setTimeout(revealCard, (doorOpenDelay) * 1000);
       }
     }
 
+    // Use click and keydown only — avoid duplicate pointerdown trigger
     hero.addEventListener("click", openInvitation);
-    hero.addEventListener("pointerdown", (e) => {
-      if (e.button === 0) openInvitation();
-    });
     hero.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") openInvitation();
     });
@@ -405,10 +400,18 @@ function showSlide(index) {
         const introType = pill.dataset.intro;
         let nextVideo = "./media/intro-Royal_palace_doors_opening.mp4";
         let nextPoster = "./media/intro-Royal_palace_doors_opening.webp";
+        let nextDelay = 4.2;
 
         if (introType === "archway") {
           nextVideo = "./media/intro-Marble_archway.mp4";
           nextPoster = "./media/intro-Marble_archway.webp";
+          nextDelay = 4.0;
+        }
+
+        if (config.media) {
+          config.media.introVideo = nextVideo;
+          config.media.introPoster = nextPoster;
+          config.media.doorOpenDelay = nextDelay;
         }
 
         if (video && videoSource) {
@@ -418,6 +421,7 @@ function showSlide(index) {
           video.load();
 
           if (hero && hero.classList.contains("is-open")) {
+            video.currentTime = 0;
             video.play().catch(() => {});
           }
         }
@@ -1122,7 +1126,7 @@ function createPetalShower() {
       <div class="template-modal-header">
         <div>
           <h2 class="template-modal-title">Nikah Card Collection</h2>
-          <p class="template-modal-sub">Explore all 4 bespoke luxury wedding themes</p>
+          <p class="template-modal-sub">Explore all luxury handcrafted Nikah themes</p>
         </div>
         <button class="template-modal-close" type="button" aria-label="Close modal">&times;</button>
       </div>

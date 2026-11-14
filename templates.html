@@ -644,7 +644,9 @@
         </p>
 
         <div class="filter-bar">
-          <button class="filter-pill is-active" data-filter="all">All Templates (5)</button>
+          <button class="filter-pill is-active" data-filter="all">All Templates (6)</button>
+          <button class="filter-pill" data-filter="doors">🏛️ Palace Doors</button>
+          <button class="filter-pill" data-filter="archway">🕌 Marble Archway</button>
           <button class="filter-pill" data-filter="ivory">Royal Ivory &amp; Gold</button>
           <button class="filter-pill" data-filter="emerald">Imperial Emerald</button>
           <button class="filter-pill" data-filter="sapphire">Celestial Sapphire</button>
@@ -914,35 +916,35 @@
           </div>
         </article>
 
-        <!-- 4. Burgundy -->
+        <!-- 5. Royal Palace Doors (Burgundy) -->
         <article
           class="card-item"
-          data-theme="burgundy"
+          data-theme="burgundy doors"
           style="--theme-accent: #c9a35f;"
         >
           <div class="card-visual">
             <img
               class="poster-img"
-              src="./media/intro-placeholder.webp"
-              alt="Royal Burgundy Theme Poster"
+              src="./media/intro-Royal_palace_doors_opening.webp"
+              alt="Royal Palace Doors Theme Poster"
               loading="lazy"
             />
             <div class="card-veil-overlay"></div>
-            <span class="card-badge-top">Classic Mughal Velvet</span>
+            <span class="card-badge-top">Classic Mughal Palace Doors</span>
             <div class="card-live-indicator">
               <i></i> Live Card
             </div>
             <div class="card-visual-info">
               <h3 class="couple-title">Faiza &amp; Aawaiz</h3>
-              <p class="theme-sub">Royal Velvet Burgundy &amp; Gold</p>
+              <p class="theme-sub">Royal Velvet &amp; Palace Doors</p>
             </div>
           </div>
 
           <div class="card-content">
             <p class="card-description">
               The iconic signature design. Rich imperial wine velvet, candlelit
-              cream tones, and warm antique gold filigree celebrating timeless
-              tradition.
+              cream tones, and grand wooden palace doors swinging open to reveal
+              divine tranquility and warm antique gold filigree.
             </p>
 
             <div class="palette-box">
@@ -958,20 +960,85 @@
 
             <ul class="feature-list">
               <li><span class="bullet-icon">✦</span> Scratch-to-reveal Date</li>
-              <li><span class="bullet-icon">✦</span> Mughal Motion Video</li>
+              <li><span class="bullet-icon">✦</span> Palace Doors Opening Video</li>
               <li><span class="bullet-icon">✦</span> Mehendi &amp; Walima</li>
               <li><span class="bullet-icon">✦</span> Full RSVP System</li>
             </ul>
 
             <div class="card-actions">
-              <a class="btn-open-card" href="./templates/burgundy/index.html">
+              <a class="btn-open-card" href="./templates/burgundy/index.html?intro=doors">
                 🌟 Open Full Card
               </a>
               <button
                 class="btn-preview-phone"
                 type="button"
-                data-url="./templates/burgundy/index.html"
-                data-name="Faiza &amp; Aawaiz (Burgundy)"
+                data-url="./templates/burgundy/index.html?intro=doors"
+                data-name="Faiza &amp; Aawaiz (Palace Doors)"
+              >
+                📱 Mobile View
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. Marble Archway (Burgundy) -->
+        <article
+          class="card-item"
+          data-theme="burgundy archway"
+          style="--theme-accent: #c9a35f;"
+        >
+          <div class="card-visual">
+            <img
+              class="poster-img"
+              src="./media/intro-Marble_archway.webp"
+              alt="Grand Marble Archway Theme Poster"
+              loading="lazy"
+            />
+            <div class="card-veil-overlay"></div>
+            <span class="card-badge-top">Imperial Marble Archway</span>
+            <div class="card-live-indicator">
+              <i></i> Live Card
+            </div>
+            <div class="card-visual-info">
+              <h3 class="couple-title">Faiza &amp; Aawaiz</h3>
+              <p class="theme-sub">Royal Velvet &amp; Marble Archway</p>
+            </div>
+          </div>
+
+          <div class="card-content">
+            <p class="card-description">
+              An enchanting Islamic palace aesthetic. Journey through an illuminated
+              white marble archway into opulent candlelit burgundy velvet,
+              celebrating eternal love and blessings.
+            </p>
+
+            <div class="palette-box">
+              <span class="palette-label">Color Palette</span>
+              <div class="palette-dots">
+                <span style="background: #3a070c;" title="Royal Velvet"></span>
+                <span style="background: #6f0b17;" title="Wine Red"></span>
+                <span style="background: #c9a35f;" title="Antique Gold"></span>
+                <span style="background: #a51520;" title="Crimson Rose"></span>
+                <span style="background: #f1e3ce;" title="Candlelit Cream"></span>
+              </div>
+            </div>
+
+            <ul class="feature-list">
+              <li><span class="bullet-icon">✦</span> Scratch-to-reveal Date</li>
+              <li><span class="bullet-icon">✦</span> Marble Archway Passage Video</li>
+              <li><span class="bullet-icon">✦</span> Mehendi &amp; Walima</li>
+              <li><span class="bullet-icon">✦</span> Full RSVP System</li>
+            </ul>
+
+            <div class="card-actions">
+              <a class="btn-open-card" href="./templates/burgundy/index.html?intro=archway">
+                🌟 Open Full Card
+              </a>
+              <button
+                class="btn-preview-phone"
+                type="button"
+                data-url="./templates/burgundy/index.html?intro=archway"
+                data-name="Faiza &amp; Aawaiz (Marble Archway)"
               >
                 📱 Mobile View
               </button>
@@ -1057,7 +1124,8 @@
 
           const filter = pill.dataset.filter;
           cardItems.forEach((card) => {
-            if (filter === "all" || card.dataset.theme === filter) {
+            const themes = (card.dataset.theme || "").split(" ");
+            if (filter === "all" || themes.includes(filter)) {
               card.style.display = "flex";
             } else {
               card.style.display = "none";
