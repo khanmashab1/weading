@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nikah Cards — Invitations Worth the Entrance</title>
-<meta name="description" content="Bespoke Islamic digital wedding invitations with cinematic door-opening intros, scratch-to-reveal dates, live countdowns and guest directions.">
+<meta name="description" content="Bespoke Islamic digital wedding invitations with cinematic door-opening intros, scratch-to-reveal dates, live countdowns and multi-event itineraries.">
 <meta name="theme-color" content="#0e0305">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -375,6 +375,70 @@ footer .brand{display:inline-block;margin-bottom:8px}
 @media (max-width:560px){.bento{grid-template-columns:1fr}}
 @media (min-width:960px) and (max-height:820px){:root{--ph:min(640px,76vh)}.ring-wrap{--cw:200px;--ch:330px}.info .desc,.lede{display:none}.info{min-height:0}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.phone{transform:none!important}}
+
+/* ═════ Mobile hardening ═════ */
+html{-webkit-text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+button,.tile,.arrow{touch-action:manipulation}
+body.phone-open{overscroll-behavior:none}
+.invite{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+
+/* no sticky hover on touch screens */
+@media (hover:none){
+  .bt:hover,.step:hover{transform:none;box-shadow:none}
+  .tile:hover .art{transform:none;box-shadow:none}
+  .btn-gold:hover{transform:none}
+}
+
+@media (max-width:959px){
+  /* overlay: full height, with fallbacks for browsers without dvh */
+  .frame,.phone{height:100vh;height:100dvh}
+  .phone{width:min(100vw,calc(100vh*.56));width:min(100vw,calc(100dvh*.56))}   /* phone-shaped on tablets + landscape */
+  .stage{background:radial-gradient(ellipse at 50% 40%,rgba(var(--glow),.28),#120204 70%)}
+
+  /* layout */
+  .top{padding:12px 16px}
+  .studio{padding:68px 16px calc(100px + env(safe-area-inset-bottom))}
+  .selector h1{font-size:clamp(30px,9vw,42px)}
+  .lede{font-size:13px;max-width:330px}
+  .info{min-height:200px}                      /* no layout jump between themes */
+
+  /* thumb-reach primary action */
+  #selectBtn{position:fixed;left:16px;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:25;
+    width:auto;padding:18px;text-align:center;box-shadow:0 14px 40px -8px rgba(0,0,0,.8),0 10px 40px -10px rgba(201,163,95,.7)}
+  body.past-hero #selectBtn,body.phone-open #selectBtn{visibility:hidden}
+  .toast{bottom:calc(90px + env(safe-area-inset-bottom));max-width:90vw;text-align:center}
+
+  /* 44px+ touch targets */
+  .arrow{width:52px;height:52px}
+  .bar button{width:42px;height:42px}
+  .switcher button{padding:10px 13px}
+
+  /* sections */
+  .sect{padding:64px 18px}
+  .sect-head{margin-bottom:36px}
+  .step,.bt{padding:24px 22px}
+  .step b{font-size:60px}
+  .tile .tt{font-size:10px;letter-spacing:.16em}
+  .cta{border-radius:26px}
+  .mq span{font-size:30px;padding:0 20px}
+
+  /* performance: drop heavy effects */
+  .grain{display:none}
+  .step,.bt,.cta,.chips span,.marquee,.arrow{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .top.solid{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(14,3,5,.94)}
+}
+@media (max-width:380px){
+  .ring-wrap{--cw:172px;--ch:288px}
+  .selector h1{font-size:28px}
+  .grid{gap:12px}
+  .chips span{font-size:9.5px;padding:5px 10px}
+}
+@media (max-width:959px) and (max-height:700px){      /* small / short phones */
+  .ring-wrap{--cw:170px;--ch:280px}
+  .info .desc{display:none}
+  .info{min-height:110px}
+}
 </style>
 </head>
 
@@ -459,7 +523,7 @@ footer .brand{display:inline-block;margin-bottom:8px}
     <div class="bt reveal" style="--d:.1s"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><h3>Scratch to reveal</h3><p>A tactile gold-foil card guests rub away to uncover the sacred date.</p></div>
     <div class="bt reveal" style="--d:.2s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Live countdown</h3><p>Days, hours, minutes and seconds ticking toward your Nikah.</p></div>
     <div class="bt reveal"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><h3>One-tap venue maps</h3><p>Guests open directions to the venue in Google Maps instantly.</p></div>
-    <div class="bt reveal" style="--d:.1s"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg><h3>Multi-event itinerary</h3><p>Curated timelines for Mehendi, Qawwali, Nikah and Walima ceremonies.</p></div>
+    <div class="bt reveal" style="--d:.1s"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><h3>Multi-event itinerary</h3><p>Mehendi, Qawwali night, Nikah and Walima, each with its own date, time and venue.</p></div>
     <div class="bt reveal" style="--d:.2s"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg><h3>Sufi &amp; nazm music</h3><p>Your chosen soundtrack begins the moment the seal is tapped.</p></div>
   </div>
 </section>
@@ -578,7 +642,7 @@ const N=THEMES.length, mod=(a,n)=>((a%n)+n)%n, pad=v=>String(v).padStart(2,'0');
 const isMobile=()=>matchMedia('(max-width:959px)').matches;
 const themeVars=t=>`--bg1:${t.bg1};--bg2:${t.bg2};--ink:${t.ink};--accent:${t.accent};--accent-ink:${t.accentInk};--scene:${t.scene};--glow:${t.glow}`;
 // card previews: preload none, played only while the card is active (performance)
-const cardVid=t=>t.video?`<video src="${t.video}" muted loop playsinline preload="none" style="opacity:0" onloadeddata="this.style.opacity=1;this.parentNode.classList.add('hasvid')" onerror="this.remove()"></video>`:'';
+const cardVid=t=>t.video?`<video src="${t.video}" muted loop playsinline webkit-playsinline preload="none" style="opacity:0" onloadeddata="this.style.opacity=1;this.parentNode.classList.add('hasvid')" onerror="this.remove()"></video>`:'';
 const REDUCED=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* ═════════════ Splash ═════════════ */
@@ -602,7 +666,7 @@ THEMES.forEach(t=>{
 
 /* ═════════════ Gold stardust ═════════════ */
 const dust=$('#dust'),dc=dust.getContext('2d');let W,H,rgb='201,163,95';
-const parts=Array.from({length:70},()=>({x:Math.random(),y:Math.random(),r:.4+Math.random()*1.6,vy:.00008+Math.random()*.0003,vx:(Math.random()-.5)*.00008,p:Math.random()*6.28}));
+const parts=Array.from({length:isMobile()?30:70},()=>({x:Math.random(),y:Math.random(),r:.4+Math.random()*1.6,vy:.00008+Math.random()*.0003,vx:(Math.random()-.5)*.00008,p:Math.random()*6.28}));
 function sizeDust(){W=dust.width=innerWidth;H=dust.height=innerHeight}
 addEventListener('resize',sizeDust);sizeDust();
 (function loop(t){
@@ -901,20 +965,13 @@ function openInvite(){
   setState('opening');resetTilt();Music.start();                      // music starts on first tap
   cover.classList.add('opening');                                     // seal + text vanish, doors move
   const v=$('#introVid');let ms=DOOR_MS;
-  if(v){
+  if(v&&cover.classList.contains('has-video')){
     v.muted=true;
-    v.playsInline=true;
-    v.setAttribute('playsinline','');
-    v.setAttribute('webkit-playsinline','');
-    try{if(v.readyState>0)v.currentTime=0}catch(e){}
-    if(isFinite(v.duration)&&v.duration>1)ms=Math.round(Math.min(v.duration,8)*1000);   // sync to real clip length
+    if(isFinite(v.duration)&&v.duration>1)ms=Math.round(Math.min(v.duration,8)*1000);
+    try{v.currentTime=0}catch(e){}
     v.onended=()=>reveal(false);
     const p=v.play();
-    if(p!==undefined){
-      p.catch(()=>{
-        cover.classList.remove('has-video');          // autoplay blocked → fallback to CSS doors
-      });
-    }
+    if(p&&p.catch)p.catch(()=>cover.classList.remove('has-video'));   // autoplay blocked → CSS doors
   }
   cover.style.setProperty('--door',ms+'ms');
   tReveal=setTimeout(()=>reveal(false),ms+250);
@@ -938,16 +995,29 @@ function reveal(skip){
 /* toast + select */
 const toast=$('#toast');let toastT=0;
 function say(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>toast.classList.remove('on'),2800)}
+function openPhone(){
+  if(document.body.classList.contains('phone-open'))return;
+  document.body.classList.add('phone-open');
+  history.pushState({phone:1},'');                       // Android Back closes the preview
+}
+function closePhone(fromPop){
+  if(!document.body.classList.contains('phone-open'))return;
+  document.body.classList.remove('phone-open');
+  Music.stop();
+  renderPhone(active);                                   // next open starts fresh at the seal
+  if(fromPop!==true&&history.state&&history.state.phone)history.back();
+}
 function selectCurrent(){
-  if(isMobile())document.body.classList.add('phone-open');
+  if(isMobile())openPhone();
   else{
     phone.classList.remove('pulse');void phone.offsetWidth;phone.classList.add('pulse');
     if(state==='idle')say('Tap the gold seal to open');
   }
 }
-function closePhone(){if(document.body.classList.contains('phone-open')){document.body.classList.remove('phone-open');Music.stop()}}
+addEventListener('popstate',()=>closePhone(true));
+addEventListener('resize',()=>{if(!isMobile())document.body.classList.remove('phone-open')});
 $('#selectBtn').onclick=selectCurrent;
-$('#close').onclick=closePhone;
+$('#close').onclick=()=>closePhone();
 $('#replay').onclick=()=>renderPhone(active);
 
 /* phone parallax tilt (desktop, mouse only, idle state only) */
@@ -1019,6 +1089,8 @@ const topEl=$('#top');
 addEventListener('scroll',()=>topEl.classList.toggle('solid',scrollY>40),{passive:true});
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.15});
 $$('.reveal').forEach(el=>rio.observe(el));
+new IntersectionObserver(([e])=>document.body.classList.toggle('past-hero',!e.isIntersecting),{threshold:0})
+  .observe($('.studio'));
 
 /* ═════════════ Boot ═════════════ */
 render();setActive();go(0);
